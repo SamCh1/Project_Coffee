@@ -22,7 +22,7 @@ module.exports.index = async (req,res) => {
             cart.totalPrice += item.totalPrice;        
         }
     }
-    res.render("client/pages/cart/index", {
+    res.render("client_v2/pages/cart/index", {
         pageTitle: "Giỏ hàng",
         cartDetail: cart
     });
@@ -40,7 +40,7 @@ module.exports.addPost = async (req, res) => {
         });
         
         const existProductInCart = cart.products.find(item => item.product_id == productId);
-        
+
         if(existProductInCart){
             const quantityNew = existProductInCart.quantity + quantity;
 

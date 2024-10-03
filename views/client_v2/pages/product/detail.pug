@@ -1,10 +1,11 @@
 extends ../../layouts/default.pug
 include ../../mixins/product-item.pug
-
+include ../../mixins/alert.mixins.pug
     title #{title}
 
 block main
-
+    +alert-success(5000)
+    +alert-error(5000)
     //data
     -
         var pets = [
@@ -98,11 +99,17 @@ block main
                     //End breadscrum
                     h1(class="product-info__title") #{product.title}
                     div(class="product-info__price") #{product.price} VND
-                    div(class="product-info__btn")
+                    div(class="product-info__btn" style="display:flex;")
                         a(href="#" class="btn" ) Thanh toán
-                        a(href="#" class="btn btn--outline" ) 
-                            i(class="fa-solid fa-basket-shopping")
-                            span Thêm vào giỏ hàng
+                        form(
+                            id="cartForm"
+                            action=`/cart/add/${product.id}`
+                            method="POST"
+                        )
+                            input(type="hidden" name="quantity" value="1" id="hiddenQuantityInput")
+                            button(type="submit" class="btn btn--outline" style="margin-left:10px;") 
+                                i(class="fa-solid fa-basket-shopping")
+                                span Thêm vào giỏ hàng
                     div(class="product-info__table")
                         table
                             tbody
@@ -116,6 +123,7 @@ block main
                                     td Số lượng:
                                     td
                                         input(
+                                            id="quantityInput"
                                             class="form-control mb-2"
                                             type="number"
                                             name="quantity"
@@ -170,6 +178,12 @@ block main
                     )
     //End section 2  
 
+
+    script. 
+        document.getElementById('cartForm').addEventListener('submit', function() {
+            const quantity = document.getElementById('quantityInput').value;
+            document.getElementById('hiddenQuantityInput').value = quantity;
+        });
 
                         
 

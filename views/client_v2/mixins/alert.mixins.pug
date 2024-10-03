@@ -1,0 +1,15 @@
+mixin alert-success(time)
+    - if(messages.Success)
+        div(
+            class = "alert alert-success"
+            show-Alert 
+            data-time = time
+        )  <span close-alert style="background:transparent; font-size:18px;"><i class="fa-regular fa-circle-check"></i></span>#{messages.Success}
+
+mixin alert-error(time)
+    - if(messages.error)
+        div(
+            class = "alert alert-danger"
+            show-Alert 
+            data-time = time
+        )  <span close-alert style="background:transparent; font-size:18px;"><i class="fa-regular fa-circle-xmark"></i></span> #{messages.error}       

@@ -3,7 +3,11 @@ include ../../mixins/section3.pug
 include ../../mixins/product-item.pug
 
     title #{title}
-block main 
+block main
+    style. 
+        html {
+            scroll-behavior: smooth;
+        }
     //Trang chi tiết sản phẩm
     // khai báo data dùng mixin product-item
     -
@@ -95,7 +99,7 @@ block main
                                 each categories in allCategory
                                     div(class="filter__item-box")
                                         div(class="filter__item-choose")
-                                            a(href=`/products/${categories.slug}` style="color: black;")
+                                            a(href=`#${categories.slug}` style="color: black;")
                                                 label(for="americano") #{categories.title}
                             //- div(class="filter__item")
                             //-     div(class="filter__item-title") Ô long MATCHA
@@ -118,11 +122,11 @@ block main
                 div(class="layout-product__right")            
                     div(class="section-5")
                         each categories in category
-                            div(class="section-5__head")
+                            a(href=`/products/${categories.slug}` class="section-5__head"  id=`${categories.slug}`)
                                 div(class="section-5__title") #{categories.title}
                                 button(class="section-5__button-filter")
-                                    i(class="fa-solid fa-filter")
                                     span Bộ lọc
+                                    i(class="fa-solid fa-mug-hot")
                             div(class="section-5__wrap")
                                 each item in products
                                     if(item.product_category_id === categories.id)

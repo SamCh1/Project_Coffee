@@ -1,0 +1,85 @@
+extends ../../layouts/default.pug
+//- include ../../mixins/box-head.mixins.pug
+include ../../mixins/alert.mixins.pug
+
+block main
+  +alert-success(700)
+  +alert-error(700)
+
+  style.
+     .cart{
+      margin-bottom:105px;
+     }
+
+      .cart__table .table{
+        border-collapse:collapse;
+        width:100%;
+      }
+
+      .cart__table table th, .cart__table table td{
+        border:1px solid black;
+        padding:10px;
+        text-align:center;
+      }
+
+      .cart__right{
+        margin-left:10px;
+        text-align:center;
+        
+      }
+
+
+  div(class="cart")
+    div(class="container")
+      div(class="cart__title" style="color:#616161;")
+        h1(style=" margin:0;") <i class="fa-solid fa-cart-shopping"></i>  Giỏ hàng
+      div(class="cart__table")
+        table(class="table table-bordered" table-cart)
+          thead 
+            tr 
+              th STT
+              th Ảnh
+              th Tên
+              th Giá
+              th Số lượng
+              th Tổng tiền
+              th Hành động
+          tbody
+            if(cartDetail.products.length > 0)
+              each item, index in cartDetail.products
+                tr
+                  td #{index+1}
+                  td
+                    img(
+                      src=item.productInfo.thumbnail
+                      alt=item.productInfo.title
+                      width="80px"
+                    )
+                  td
+                    a(
+                      href=`/products/detail/${item.productInfo.slug}`
+                    ) #{item.productInfo.title}
+                  td #{item.productInfo.priceNew} VND
+                  td
+                    input(
+                      type="number"
+                      name="quantity"
+                      value=item.quantity
+                      min="1"
+                      item-id=item.product_id
+                      style="width: 60px"
+                    )
+                  td #{item.totalPrice} VND
+                  td
+                    a(
+                      href=`/cart/delete/${item.product_id}`
+                      class="btn btn-danger"
+                    ) Xóa
+            else
+              tr
+                td(colspan="7") Chưa có sản phẩm nào!
+        div(class="cart__right")
+          h3(class="text-right") Tổng đơn hàng: #{cartDetail.totalPrice} VND
+          
+          div(class="text-right")
+            a(href="/checkout" class="btn btn-success") THANH TOÁN
