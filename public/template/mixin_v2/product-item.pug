@@ -1,0 +1,15 @@
+mixin product-item(image, id, orgin, year, price, num)
+    div(class=`product-item ${num ? num : ""}`)
+        div(class="product-item__img")
+            img(loading="lazy" src=image alt=id)
+        div(class="product-item__content")
+            h3(class="product-item__title")
+                a(href="#") #{id}
+            div(class="product-item__meta")
+                div(class="product-item__meta-item")
+                    span Origin:
+                    strong #{orgin}
+                div(class="product-item__meta-item")
+                    span Year:
+                    strong #{year}
+            div(class="product-item__price") #{price} VND

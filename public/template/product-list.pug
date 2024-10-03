@@ -1,0 +1,152 @@
+extends layout/default.pug
+include mixin/section3.pug
+include mixin/product-item.pug
+
+block title
+    title Trang danh sách
+
+block main 
+    //Trang chi tiết sản phẩm
+    // khai báo data dùng mixin product-item
+    -
+        var pets = [
+            {
+                images:'https://chillaxrestaurant.co.nz/wp-content/uploads/2023/09/coffee-brain-caffeine-neuroscincces.webp',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://lifeboostcoffee.com/cdn/shop/articles/1445732_Highelevationcoffeebeans_NoLogo_SteamingCupOfCoffee4_090222.jpg?v=1664805147',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://hips.hearstapps.com/hmg-prod/images/dalgona-coffee-a-trendy-fluffy-creamy-whipped-royalty-free-image-1608301380.',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://i.pinimg.com/originals/de/f6/25/def6256dd843a72f7ab758358cf57f2d.jpg',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://www.shutterstock.com/image-photo/still-life-photography-hot-coffee-260nw-298821158.jpg',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://live.staticflickr.com/65535/53681260520_cd7288f9bc_k.jpg',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://static.toiimg.com/thumb/88316599.cms?imgsize=63826&width=800&height=800',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'assets/image/blog-3.jpeg',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            }
+        ];
+    
+    //breadscrum
+    div(class="breadscrum")
+        div(class="container")
+            div(class="breadscrum__wrap")
+                a(href="#" class="breadscrum__link") Trang chủ
+                a(href="#" class="breadscrum__link") Cà phê
+                a(href="#" class="breadscrum__link") Loại Cappucino
+    //End breadscrum
+
+    //section 3
+    +section-3()
+    //End section 3
+
+    //layout product
+    div(class="layout-product")
+         div(class="container")
+            div(class="layout-product__wrap")
+                div(class="layout-product__left")
+                    div(class="filter")
+                        div(class="filter__title")
+                            i(class="fa-solid fa-filter")
+                            span Bộ lọc
+                        div(class="filter__list")
+                            div(class="filter__item")
+                                div(class="filter__item-title") Cà phê
+                                div(class="filter__item-box")
+                                    div(class="filter__item-choose")
+                                        input(type="checkbox" name="coffee" value="americano" id="americano")
+                                        label(for="americano") Americano
+                                    div(class="filter__item-choose")
+                                        input(type="checkbox" name="loại" value="capucino" id="capucino")
+                                        label(for="capucino") Capuccino
+                            div(class="filter__item")
+                                div(class="filter__item-title") Ô long MATCHA
+                                div(class="filter__item-box")
+                                    div(class="filter__item-choose")
+                                        input(type="checkbox" name="tea" value="olongsua" id="olongsua")
+                                        label(for="olongsua") Ô long Fa
+                                    div(class="filter__item-choose")
+                                        input(type="checkbox" name="tea" value="matcha" id="matcha")
+                                        label(for="matcha") Matcha nguyên bản
+                            div(class="filter__item")
+                                div(class="filter__item-title") Topping
+                                div(class="filter__item-box")
+                                    div(class="filter__item-choose")
+                                        input(type="checkbox" name="topping" value="black_bubble" id="black_bubble")
+                                        label(for="black_bubble") Trân châu đường đen
+                                    div(class="filter__item-choose")
+                                        input(type="checkbox" name="topping" value="royal_bubble" id="royal_bubble")
+                                        label(for="royal_bubble") Trân châu hoàng gia
+                div(class="layout-product__right")            
+                    div(class="section-5")
+                        div(class="section-5__head")
+                            div(class="section-5__title") Cà phê
+                            button(class="section-5__button-filter")
+                                i(class="fa-solid fa-filter")
+                                span Bộ lọc
+                        div(class="section-5__wrap")
+                            each pet in pets
+                                +product-item(pet.images, pet.id, pet.orgin, pet.year, pet.price, "product-item--three")
+                        //End section 5 
+                        //pagination 
+                    div(class="pagination")
+                        ul(class="pagination__list")
+                            li(class="pagination__item")
+                                a(href="#" class="pagination__link") <i class="fa-regular fa-circle-left" style="color: #FFD43B;"></i>
+                            li(class="pagination__item")
+                                a(href="#" class="pagination__link pagination__link--active") 1
+                            li(class="pagination__item")
+                                a(href="#" class="pagination__link") 2
+                            li(class="pagination__item")
+                                a(href="#" class="pagination__link") 3
+                            li(class="pagination__item")
+                                a(href="#" class="pagination__link") 4
+                            li(class="pagination__item")
+                                a(href="#" class="pagination__link") ...
+                            li(class="pagination__item")
+                                a(href="#" class="pagination__link") 28
+                            li(class="pagination__item")
+                                a(href="#" class="pagination__link") <i class="fa-regular fa-circle-right" style="color: #FFD43B;"></i>
+                    // End pagination
+    

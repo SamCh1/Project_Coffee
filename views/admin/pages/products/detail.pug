@@ -1,0 +1,44 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.mixins.pug
+block main
+      if(role.permissions.includes("products_view"))
+        section.py-5
+            .container.px-4.px-lg-5.my-5
+                .row.gx-4.gx-lg-5.align-items-center
+                    .col-md-6
+                        if (product.thumbnail)
+                          img.card-img-top.mb-5.mb-md-0(src=product.thumbnail)
+                    .col-md-6
+                        if(product.title)
+                          .small.mb-1 StoreCS
+                        if(product.title)
+                          h1(class="mb-4") #{product.title}
+                        .fs-5.mb-5  
+                            if (product.origin)
+                              div(class="mb-4") Year: <b>#{product.origin}$</b>
+                            
+                            if (product.)
+                              div(class="mb-4") Year: <b>#{product.year}$</b>
+                            
+                            if (product.price)
+                              div(class="mb-4") Giá: <b>#{product.price}$</b>
+                            
+                            if (product.discountPercentage)
+                              div(class="mb-4") Giảm giá: <b>#{product.discountPercentage}%</b>
+                            
+                            if (product.stock)
+                                div(class="mb-4") Còn lại: <b>#{product.stock}</b>      
+                            
+                            if (product.description)
+                              div(class="mb-4") !{product.description}
+                            
+                            if (product.position)
+                              div(class="mb-4") Vị trí: <b>#{product.position}</b>
+                            
+                            if (product.status)
+                              div(class="mb-4")
+                                span Trạng thái:
+                                if (product.status === "active")
+                                  span(class="badge badge-success") Hoạt động
+                                else
+                                  span(class="badge badge-danger") Dừng hoạt động

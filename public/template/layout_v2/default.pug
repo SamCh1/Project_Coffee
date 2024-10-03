@@ -1,0 +1,83 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="assets/css/style.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer")
+        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.css")
+        link(href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet")
+        block title
+    body          
+        //Header
+        div(class="header")
+            div(class="container")
+                div(class="header__wrap")
+                    div(class="header__icon-menu")
+                        i(class="fa-solid fa-bars")
+                    div(class="header__logo")
+                        a(href="/")
+                            img(src="assets/image/logo2.png" alt="Monitor")
+                    nav(class="header__menu")
+                        ul
+                            li
+                                a(href="/") Trang chủ
+                            li
+                                a(href="#") Danh mục
+                            li
+                                a(href="#") Giới thiệu
+                            li
+                                a(href="#") Liên hệ
+                    div(class="header__search")
+                        form(action="")
+                            input(type="text" placeholder="Nhập từ khoá...")
+                            button 
+                                i(class="fa-solid fa-magnifying-glass")
+                    div(class="header__button")
+                        a(href="#" class="btn") Tham gia cộng đồng
+                    div(class="header__icon-search")
+                        i(class="fa-solid fa-magnifying-glass")      
+        //End-header
+
+        block main 
+        
+        
+        //Footer
+        div(class="footer")
+            div(class="footer__top")
+                div(class="footer__top-content") Register now to not miss our promotions
+                div(class="footer__top-form")
+                    form(action="")
+                        input(type="email" placeholder="Entry your email..." name="email")
+                        button Register Now
+            div(class="footer__middle")
+                div(class="footer__middle-menu")
+                    a(href="#") Trang chủ
+                    a(href="#") Danh mục
+                    a(href="#") Giới thiệu
+                    a(href="#") Liên hệ
+                div(class="footer__middle-socials")
+                    a(href="#" target="_blank") <i class="fa-brands fa-facebook"></i>
+                    a(href="#" target="_blank") <i class="fa-brands fa-x-twitter"></i>
+                    a(href="#" target="_blank") <i class="fa-brands fa-instagram"></i>
+                    a(href="#" target="_blank") <i class="fa-brands fa-youtube"></i>
+            div(class="footer__bottom")
+                div(class="footer__bottom-copyright") @2024 Sâm.All rights reserved
+                div(class="footer__bottom-logo")
+                    a(href="#")
+                        img(src="assets/image/logo2.png" alt="")
+                div(class="footer__bottom-right")
+                    a(href="#") Điều khoản dịch vụ
+                    a(href="#") Chính sách bảo mật
+        //End footer
+
+        script(src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js") 
+        script(src="https://unpkg.com/aos@2.3.1/dist/aos.js")
+        script(src="assets/js/script.js")
+        script(src="assets/js/aos.js")
+
+

@@ -1,0 +1,15 @@
+mixin product-item(thumbnail, id, origin, year, price, title, slug, discountPercentage, priceNew)
+    div(class=`product-item ${num ? num : ""}`)
+        div(class="product-item__img")
+            img(loading="lazy" src=thumbnail alt=title)
+        div(class="product-item__content")
+            h3(class="product-item__title")
+                a(href=`/products/detail/${slug}`) #{title}
+            div(class="product-item__meta")
+                div(class="product-item__meta-item")
+                    span Giảm giá:
+                    strong #{discountPercentage}%
+                //- div(class="product-item__meta-item")
+                //-     span Year:
+                //-     strong #{year}
+            div(class="product-item__price") #{price.toLocaleString()} VND

@@ -1,0 +1,47 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.mixins.pug
+
+block main
+    .container.my-3
+        .row 
+            .col-12 
+                +box-head("Danh sách sản phẩm")
+        .card-header Sắp xếp 
+        .card-body
+            .row 
+                .col-4    
+                    div(sort)
+                        select(
+                            class="form-control"
+                            name="sort"
+                            sort-select
+                        )
+                            option(value="position-desc") Vị trí giảm dần 
+                            option(value="position-asc") Vị trí tăng dần
+                            option(value="price-desc") Giá giảm dần
+                            option(value="price-asc") Giá tăng dần
+                            option(value="title-desc") Tiêu đề A - Z
+                            option(value="title-asc") Tiêu đề Z - A
+                    
+                        button(
+                            class="btn btn-danger mt-2"
+                            sort-clear
+                        )   clear
+        
+        .row
+            if(products.length > 0) 
+                each item in products
+                    .col-4.mb-3 
+                        .product-item 
+                            .inner-image 
+                                a(href=`/products/detail/${item.slug}`)
+                                    img(src=item.thumbnail, alt=item.title)
+                            .inner-content 
+                                h3.inner-title 
+                                    a(href=`/products/detail/${item.slug}`) #{item.title}
+                                .inner-price-new #{item.priceNew} $
+                                .inner-price-old #{item.price} $
+                                .inner-discount #{item.discountPercentage} %
+            else 
+                div(class="col-12") 
+                    div(class="alert alert-danger") Không tìm thấy sản phẩm nào.                

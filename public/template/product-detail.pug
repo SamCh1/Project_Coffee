@@ -1,0 +1,169 @@
+extends layout/default.pug
+include mixin/product-item.pug
+
+block title 
+    title Trang chi tiết sản phẩm
+
+block main
+
+    //data
+    -
+        var pets = [
+            {
+                images:'https://chillaxrestaurant.co.nz/wp-content/uploads/2023/09/coffee-brain-caffeine-neuroscincces.webp',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://lifeboostcoffee.com/cdn/shop/articles/1445732_Highelevationcoffeebeans_NoLogo_SteamingCupOfCoffee4_090222.jpg?v=1664805147',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://hips.hearstapps.com/hmg-prod/images/dalgona-coffee-a-trendy-fluffy-creamy-whipped-royalty-free-image-1608301380.',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://i.pinimg.com/originals/de/f6/25/def6256dd843a72f7ab758358cf57f2d.jpg',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            }
+        ];
+    //End data
+
+    //product info
+    div(class="product-info")
+        div(class="container")
+            div(class="product-info__wrap")
+                div(class="product-info__left")
+                    div(class="product-info__image-main")
+                        div(class="swiper mySwiper2" id="viewrSliderMain")
+                            div(class="swiper-wrapper")
+                                div(class="swiper-slide")
+                                    img(src="https://img.freepik.com/free-photo/coffee-machine-making-perfect-cup-coffee_23-2151699675.jpg?t=st=1723017162~exp=1723020762~hmac=628beac81a3049358d9c804f4a964fb5e8265cddb1a6f62ead4ada359bde28e2&w=996" alt="")
+                                div(class="swiper-slide")
+                                    img(src="https://img.freepik.com/free-photo/latte-coffee-cup_1203-6549.jpg?t=st=1723016703~exp=1723020303~hmac=be8beaeca0d639e65069e0aad1e703fcf293f3f83137535b0e6c839ca332ec4a&w=826" alt="")
+                                div(class="swiper-slide")
+                                    img(src="https://img.freepik.com/free-photo/top-view-hot-espresso-with-brown-coffee-seeds-brown-wooden-desk-coffee-cup-drink_140725-28168.jpg?t=st=1723019192~exp=1723022792~hmac=b971e86ad8ed23394576fc50ce908e339ae172633bff59eaf2deee1f049f44f7&w=996" alt="")
+                                div(class="swiper-slide")
+                                    img(src="https://img.freepik.com/free-photo/barista-warming-up-coffee-coffee-machine_1303-19412.jpg?t=st=1723023307~exp=1723026907~hmac=98a7d21bd51f97c98f7e7a282febf840b45ca3c7af571cbf3f0fde3d699e5c6a&w=1800" alt="")
+                                div(class="swiper-slide")                    
+                                    img(src="https://img.freepik.com/free-photo/freshness-cup-coffee-shop-aroma-frothy-cappuccino-delight-generated-by-artificial-intelligence_24877-81043.jpg?t=st=1723023423~exp=1723027023~hmac=12a24a5e18c1eacd76536a2434c0f40dfe694f6caaaeb20b6d05a8864aa923ef&w=2000" alt="")
+                                div(class="swiper-slide")                    
+                                    img(src="https://img.freepik.com/free-photo/delicious-cookies-coffee-cup_23-2150707387.jpg?t=st=1723089215~exp=1723092815~hmac=07a000f472ceaf4eeece29c574e853ef819c0932b32b882ecca153a5ac8f1278&w=826" alt="")                   
+                                div(class="swiper-slide")                    
+                                    img(src="https://img.freepik.com/free-photo/view-coffee-cups_23-2150698871.jpg?t=st=1723089483~exp=1723093083~hmac=c5edcb39ace2005f02452868884151461e9aa47bb3a66af5c150c4b6f73935d4&w=740" alt="")                   
+                                div(class="swiper-slide")                    
+                                    img(src="https://img.freepik.com/free-photo/latte-coffee-cup_74190-1194.jpg?t=st=1723089515~exp=1723093115~hmac=524779c9fde49033413bdcafcf7fa8e54de782ea7184a96fcddbaa79bea894f3&w=826" alt="")                   
+                                div(class="swiper-slide")                    
+                                    img(src="https://img.freepik.com/free-photo/glass-tasty-latte-with-love-art-wooden-table-coffee-shop_23-2148209240.jpg?t=st=1723089544~exp=1723093144~hmac=28cd8a8f70a6c49118e41c402c2926f0e5905e7e236d40718d21a0c44add1b98&w=826" alt="") 
+                            div(class="swiper-button-next")
+                            div(class="swiper-button-prev")
+                    div(class="product-info__image-thumb")
+                        div(class="swiper mySwiper")
+                            div(class="swiper-wrapper")
+                                div(class="swiper-slide")
+                                    img(src="https://img.freepik.com/free-photo/coffee-machine-making-perfect-cup-coffee_23-2151699675.jpg?t=st=1723017162~exp=1723020762~hmac=628beac81a3049358d9c804f4a964fb5e8265cddb1a6f62ead4ada359bde28e2&w=996" alt="")
+                                div(class="swiper-slide")
+                                    img(src="https://img.freepik.com/free-photo/latte-coffee-cup_1203-6549.jpg?t=st=1723016703~exp=1723020303~hmac=be8beaeca0d639e65069e0aad1e703fcf293f3f83137535b0e6c839ca332ec4a&w=826" alt="")
+                                div(class="swiper-slide")
+                                    img(src="https://img.freepik.com/free-photo/top-view-hot-espresso-with-brown-coffee-seeds-brown-wooden-desk-coffee-cup-drink_140725-28168.jpg?t=st=1723019192~exp=1723022792~hmac=b971e86ad8ed23394576fc50ce908e339ae172633bff59eaf2deee1f049f44f7&w=996" alt="")
+                                div(class="swiper-slide")
+                                    img(src="https://img.freepik.com/free-photo/barista-warming-up-coffee-coffee-machine_1303-19412.jpg?t=st=1723023307~exp=1723026907~hmac=98a7d21bd51f97c98f7e7a282febf840b45ca3c7af571cbf3f0fde3d699e5c6a&w=1800" alt="")
+                                div(class="swiper-slide")                    
+                                    img(src="https://img.freepik.com/free-photo/freshness-cup-coffee-shop-aroma-frothy-cappuccino-delight-generated-by-artificial-intelligence_24877-81043.jpg?t=st=1723023423~exp=1723027023~hmac=12a24a5e18c1eacd76536a2434c0f40dfe694f6caaaeb20b6d05a8864aa923ef&w=2000" alt="")                   
+                                div(class="swiper-slide")                    
+                                    img(src="https://img.freepik.com/free-photo/delicious-cookies-coffee-cup_23-2150707387.jpg?t=st=1723089215~exp=1723092815~hmac=07a000f472ceaf4eeece29c574e853ef819c0932b32b882ecca153a5ac8f1278&w=826" alt="")                   
+                                div(class="swiper-slide")                    
+                                    img(src="https://img.freepik.com/free-photo/view-coffee-cups_23-2150698871.jpg?t=st=1723089483~exp=1723093083~hmac=c5edcb39ace2005f02452868884151461e9aa47bb3a66af5c150c4b6f73935d4&w=740" alt="")                   
+                                div(class="swiper-slide")                    
+                                    img(src="https://img.freepik.com/free-photo/latte-coffee-cup_74190-1194.jpg?t=st=1723089515~exp=1723093115~hmac=524779c9fde49033413bdcafcf7fa8e54de782ea7184a96fcddbaa79bea894f3&w=826" alt="")                   
+                                div(class="swiper-slide")                    
+                                    img(src="https://img.freepik.com/free-photo/glass-tasty-latte-with-love-art-wooden-table-coffee-shop_23-2148209240.jpg?t=st=1723089544~exp=1723093144~hmac=28cd8a8f70a6c49118e41c402c2926f0e5905e7e236d40718d21a0c44add1b98&w=826" alt="")                   
+                div(class="product-info__right")
+                    //breadscrum 
+                    div(class="breadscrum")
+                            div(class="breadscrum__wrap")
+                                a(href="#" class="breadscrum__link") Trang chủ
+                                a(href="#" class="breadscrum__link") Cà phê
+                                a(href="#" class="breadscrum__link") CF01-Cappucino
+                    //End breadscrum
+                    h1(class="product-info__title") Capucinno Latte
+                    div(class="product-info__price") 45.000 VND
+                    div(class="product-info__btn")
+                        a(href="#" class="btn" ) Thanh toán
+                        a(href="#" class="btn btn--outline" ) 
+                            i(class="fa-solid fa-basket-shopping")
+                            span Thêm vào giỏ hàng
+                    div(class="product-info__table")
+                        table
+                            tbody
+                                tr 
+                                    td SKU
+                                    td CF-Capuccino01
+                                tr 
+                                    td Loại:
+                                    td Cà phê
+                                tr 
+                                    td Nguồn gốc:
+                                    td Italy
+                                tr 
+                                    td Size:
+                                    td M
+                                tr 
+                                    td Đá:
+                                    td Không
+                                tr 
+                                    td Mô tả ngắn:
+                                    td Capuccino là thức uống có nguồn gốc từ Ý gồm cà phê và sữa khuấy bông
+                    //box share                
+                    div(class="box-share")
+                        div(class="box-share__label")
+                            i(class="fa-solid fa-share-nodes")
+                            span Chia sẻ: 
+                        ul(class="box-share__list")
+                            li(class="box-share__item")
+                                a(class="box-share__link" href="#" target="_blank") <i class="fa-brands fa-facebook"></i>
+                            li(class="box-share__item")
+                                a(class="box-share__link" href="#" target="_blank") <i class="fa-brands fa-x-twitter"></i>
+                            li(class="box-share__item")
+                                a(class="box-share__link" href="#" target="_blank") <i class="fa-brands fa-instagram"></i>
+                            li(class="box-share__item")
+                                a(class="box-share__link" href="#" target="_blank") <i class="fa-brands fa-youtube"></i>
+                    //End box share            
+    //End product info
+
+    //Our customer
+    //End our customer
+
+    //section 2
+    div(class="section-2")
+        div(class="container")
+            div(class="box-head")
+                div(class="box-head__left")
+                    div(class="box-head__sub-title") What's new?
+                    h2(class="box-head__title") Best coffee for you
+            div(class="section-2__wrap")
+                each pet in pets
+                    +product-item(
+                        pet.images,
+                        pet.id,
+                        pet.orgin,
+                        pet.year,
+                        pet.price
+                    )
+    //End section 2  
+
+
+                        
+
+                        

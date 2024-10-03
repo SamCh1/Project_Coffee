@@ -1,0 +1,17 @@
+extends ../../layouts/default.pug
+
+block main 
+  head
+    link(rel='stylesheet', href='/css/404.css')
+  body
+    section.page_404
+        .container
+            .row
+                .col-sm-12
+                    .col-sm-13.col-sm-offset-1.text-center
+                        .four_zero_four_bg
+                        .contant_box_404
+                            h3.h2
+                                | Look like you are lost
+                            p Trang web bạn tìm hiện không có!
+                            a.link_404(href="/" class="btn btn-warning") Về trang chủ

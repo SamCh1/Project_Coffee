@@ -1,0 +1,157 @@
+extends layout/default.pug
+include mixin/section3.pug
+include mixin/product-item.pug 
+
+block title
+        Title Trang chủ
+
+block main
+    //khai báo data dùng mixin product-item
+    -
+        var pets = [
+            {
+                images:'https://chillaxrestaurant.co.nz/wp-content/uploads/2023/09/coffee-brain-caffeine-neuroscincces.webp',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://lifeboostcoffee.com/cdn/shop/articles/1445732_Highelevationcoffeebeans_NoLogo_SteamingCupOfCoffee4_090222.jpg?v=1664805147',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://hips.hearstapps.com/hmg-prod/images/dalgona-coffee-a-trendy-fluffy-creamy-whipped-royalty-free-image-1608301380.',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://i.pinimg.com/originals/de/f6/25/def6256dd843a72f7ab758358cf57f2d.jpg',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://www.shutterstock.com/image-photo/still-life-photography-hot-coffee-260nw-298821158.jpg',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://live.staticflickr.com/65535/53681260520_cd7288f9bc_k.jpg',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'https://static.toiimg.com/thumb/88316599.cms?imgsize=63826&width=800&height=800',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            },
+            {
+                images:'assets/image/blog-3.jpeg',
+                id:'CF01-Cappucino',
+                orgin:'American',
+                year: '2024',
+                price:'4.000.000'
+            }
+        ];
+    
+    //section 1
+    div(class="section-1")
+        div(class="container")
+            div(class="section-1__wrap")
+                img(src="assets/image/bg4.svg" class="section-1__bg4" alt="")
+                div(class="section-1__content")
+                    img(src="assets/image/bg1.svg" data-aos="zoom-in" data-aos-duration="3000" class="section-1__bg1" alt=" ")
+                    h1(class="section-1__title") NEW <br> FLAVOURS<br> FREE TASTING
+                    h2(class="section-1__sub-title") INDIAN / AFRICAN / PERU
+                    p(class="section-1__desc") The passage experienced a surge in popularity during the 1960s when used
+                    div(class="section-1__button")
+                        a(href="#" class="btn btn--outline") Giới thiệu 
+                            i(class="fa-regular fa-circle-play")
+                        a(href="#" class="btn") Lựa Chọn
+                    img(src="assets/image/bg2.svg" class="section-1__bg2" alt="")
+                div(class="section-1__img")
+                    img(class="section-1__img-main" data-aos="zoom-in-up" src="assets/image/image-coffee.png" alt="")
+                    img(class="section-1__bg3" data-aos="zoom-in-up" src="assets/image/bg3.svg" alt="")
+    //End section 1        
+
+    //section 2
+    div(class="section-2")
+        div(class="container")
+            div(class="box-head")
+                div(class="box-head__left")
+                    div(class="box-head__sub-title") What's new?
+                    h2(class="box-head__title") Best coffee for you
+                div(class="box-head__right")
+                    a(href="#" class="btn btn--outline") more 
+                        i(class="fa-solid fa-angle-right")
+            div(class="section-2__wrap")
+                each pet in pets
+                    +product-item(
+                        pet.images,
+                        pet.id,
+                        pet.orgin,
+                        pet.year,
+                        pet.price
+                    )
+            div(class="section-2__bottom-button")
+                a(href="#" class="btn btn--outline")
+                    | more
+                    i(class="fa-solid fa-angle-right")
+    //End section 2  
+
+    //section 3
+    +section-3()
+    //End section 3
+
+    //section 4
+    div(class="section-4")
+        div(class="container")
+            div(class="box-head")
+                div(class="box-head__left")
+                    div(class="box-head__sub-title") Could you know?
+                    h3(class="box-head__title") Useful knowledges of coffee
+                div(class="box-head__right")
+                    a(href="#" class="btn btn--outline") More 
+                        i(class="fa-solid fa-angle-right")
+            div(class="section-4__wrap")
+                div(class="section-4__item" data-aos="zoom-in-left")
+                    div(class="section-4__img")
+                        img(loading="lazy" src="https://images.squarespace-cdn.com/content/v1/5ef32b34629ad57785c5476a/1611305365698-MYHZ1P66OM2KZC2F8836/image.jpg?format=2500w" class="" alt="")
+                    div(class="section-4__content")
+                        div(class="section-4__tag") Useful knowledges of coffee
+                        h3(class="section-4__title")
+                            a(href="#") what makes delicious cup of coffee?
+                        div(class="section-4__desc") 𝘛𝘩𝘦 𝘥𝘦𝘧𝘪𝘯𝘪𝘵𝘪𝘰𝘯 𝘰𝘧 𝘢 𝘥𝘦𝘭𝘪𝘤𝘪𝘰𝘶𝘴 𝘤𝘶𝘱 𝘰𝘧 𝘤𝘰𝘧𝘧𝘦𝘦 𝘸𝘪𝘭𝘭 𝘱𝘳𝘰𝘣𝘢𝘣𝘭𝘺 𝘯𝘰𝘵 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘧𝘳𝘰𝘮 𝘱𝘦𝘳𝘴𝘰𝘯 𝘵𝘰 𝘱𝘦𝘳𝘴𝘰𝘯, 𝘣𝘶𝘵 𝘮𝘰𝘴𝘵 𝘱𝘦𝘰𝘱𝘭𝘦 𝘸𝘪𝘭𝘭 𝘢𝘨𝘳𝘦𝘦 𝘵𝘩𝘢𝘵 𝘪𝘵 𝘪𝘴 𝘯𝘰𝘵 𝘢 𝘴𝘪𝘮𝘱𝘭𝘦 𝘵𝘢𝘴𝘬. 𝘛𝘩𝘦 𝘱𝘳𝘪𝘯𝘤𝘪𝘱𝘭𝘦 𝘰𝘧 𝘮𝘢𝘬𝘪𝘯𝘨 𝘤𝘰𝘧𝘧𝘦𝘦 𝘢𝘳𝘦 𝘢𝘤𝘵𝘶𝘢𝘭𝘭𝘺 𝘴𝘪𝘮𝘱𝘭𝘦, 𝘶𝘴𝘪𝘯𝘨 𝘸𝘢𝘵𝘦𝘳 𝘵𝘰 𝘣𝘳𝘪𝘯𝘨 𝘰𝘶𝘵 𝘵𝘩𝘦 𝘩𝘪𝘥𝘥𝘦𝘯 𝘧𝘭𝘢𝘷𝘰𝘳𝘴 𝘧𝘳𝘰𝘮 𝘵𝘩𝘦 𝘣𝘦𝘢𝘯𝘴. 𝘛𝘩𝘦 𝘥𝘪𝘧𝘧𝘪𝘤𝘶𝘭𝘵 𝘱𝘢𝘳𝘵 𝘰𝘧 𝘮𝘢𝘬𝘪𝘯𝘨 𝘢 𝘥𝘦𝘭𝘪𝘤𝘪𝘰𝘶𝘴 𝘤𝘶𝘱 𝘪𝘴 𝘵𝘩𝘢𝘵 𝘣𝘢𝘳𝘪𝘴𝘵𝘢𝘴 𝘮𝘶𝘴𝘵 𝘳𝘦𝘢𝘭𝘭𝘺 𝘶𝘯𝘥𝘦𝘳𝘴𝘵𝘢𝘯𝘥 𝘵𝘩𝘦 𝘤𝘰𝘧𝘧𝘦𝘦 𝘣𝘦𝘢𝘯𝘴, 𝘥𝘪𝘭𝘪𝘨𝘦𝘯𝘵𝘭𝘺 𝘱𝘳𝘢𝘤𝘵𝘪𝘤𝘦 𝘵𝘩𝘦𝘪𝘳 𝘤𝘳𝘢𝘧𝘵 𝘵𝘰 𝘨𝘦𝘵 𝘵𝘩𝘦 𝘣𝘦𝘴𝘵 𝘵𝘢𝘴𝘵𝘦 𝘰𝘧 𝘦𝘷𝘦𝘳𝘺 𝘤𝘶𝘱.
+                div(class="section-4__item" data-aos="zoom-in")
+                    div(class="section-4__img")
+                        img(loading="lazy" src="https://images.squarespace-cdn.com/content/v1/5ef32b34629ad57785c5476a/1611305365698-MYHZ1P66OM2KZC2F8836/image.jpg?format=2500w" class="" alt="")
+                    div(class="section-4__content")
+                        div(class="section-4__tag") Useful knowledges of coffee
+                        h3(class="section-4__title")
+                            a(href="#") what makes delicious cup of coffee?
+                        div(class="section-4__desc") 𝘛𝘩𝘦 𝘥𝘦𝘧𝘪𝘯𝘪𝘵𝘪𝘰𝘯 𝘰𝘧 𝘢 𝘥𝘦𝘭𝘪𝘤𝘪𝘰𝘶𝘴 𝘤𝘶𝘱 𝘰𝘧 𝘤𝘰𝘧𝘧𝘦𝘦 𝘸𝘪𝘭𝘭 𝘱𝘳𝘰𝘣𝘢𝘣𝘭𝘺 𝘯𝘰𝘵 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘧𝘳𝘰𝘮 𝘱𝘦𝘳𝘴𝘰𝘯 𝘵𝘰 𝘱𝘦𝘳𝘴𝘰𝘯, 𝘣𝘶𝘵 𝘮𝘰𝘴𝘵 𝘱𝘦𝘰𝘱𝘭𝘦 𝘸𝘪𝘭𝘭 𝘢𝘨𝘳𝘦𝘦 𝘵𝘩𝘢𝘵 𝘪𝘵 𝘪𝘴 𝘯𝘰𝘵 𝘢 𝘴𝘪𝘮𝘱𝘭𝘦 𝘵𝘢𝘴𝘬. 𝘛𝘩𝘦 𝘱𝘳𝘪𝘯𝘤𝘪𝘱𝘭𝘦 𝘰𝘧 𝘮𝘢𝘬𝘪𝘯𝘨 𝘤𝘰𝘧𝘧𝘦𝘦 𝘢𝘳𝘦 𝘢𝘤𝘵𝘶𝘢𝘭𝘭𝘺 𝘴𝘪𝘮𝘱𝘭𝘦, 𝘶𝘴𝘪𝘯𝘨 𝘸𝘢𝘵𝘦𝘳 𝘵𝘰 𝘣𝘳𝘪𝘯𝘨 𝘰𝘶𝘵 𝘵𝘩𝘦 𝘩𝘪𝘥𝘥𝘦𝘯 𝘧𝘭𝘢𝘷𝘰𝘳𝘴 𝘧𝘳𝘰𝘮 𝘵𝘩𝘦 𝘣𝘦𝘢𝘯𝘴. 𝘛𝘩𝘦 𝘥𝘪𝘧𝘧𝘪𝘤𝘶𝘭𝘵 𝘱𝘢𝘳𝘵 𝘰𝘧 𝘮𝘢𝘬𝘪𝘯𝘨 𝘢 𝘥𝘦𝘭𝘪𝘤𝘪𝘰𝘶𝘴 𝘤𝘶𝘱 𝘪𝘴 𝘵𝘩𝘢𝘵 𝘣𝘢𝘳𝘪𝘴𝘵𝘢𝘴 𝘮𝘶𝘴𝘵 𝘳𝘦𝘢𝘭𝘭𝘺 𝘶𝘯𝘥𝘦𝘳𝘴𝘵𝘢𝘯𝘥 𝘵𝘩𝘦 𝘤𝘰𝘧𝘧𝘦𝘦 𝘣𝘦𝘢𝘯𝘴, 𝘥𝘪𝘭𝘪𝘨𝘦𝘯𝘵𝘭𝘺 𝘱𝘳𝘢𝘤𝘵𝘪𝘤𝘦 𝘵𝘩𝘦𝘪𝘳 𝘤𝘳𝘢𝘧𝘵 𝘵𝘰 𝘨𝘦𝘵 𝘵𝘩𝘦 𝘣𝘦𝘴𝘵 𝘵𝘢𝘴𝘵𝘦 𝘰𝘧 𝘦𝘷𝘦𝘳𝘺 𝘤𝘶𝘱.
+                div(class="section-4__item" data-aos="zoom-in-right")
+                    div(class="section-4__img")
+                        img(loading="lazy" src="https://images.squarespace-cdn.com/content/v1/5ef32b34629ad57785c5476a/1611305365698-MYHZ1P66OM2KZC2F8836/image.jpg?format=2500w" class="" alt="")
+                    div(class="section-4__content")
+                        div(class="section-4__tag") Useful knowledges of coffee
+                        h3(class="section-4__title")
+                            a(href="#") what makes delicious cup of coffee?
+                        div(class="section-4__desc") 𝘛𝘩𝘦 𝘥𝘦𝘧𝘪𝘯𝘪𝘵𝘪𝘰𝘯 𝘰𝘧 𝘢 𝘥𝘦𝘭𝘪𝘤𝘪𝘰𝘶𝘴 𝘤𝘶𝘱 𝘰𝘧 𝘤𝘰𝘧𝘧𝘦𝘦 𝘸𝘪𝘭𝘭 𝘱𝘳𝘰𝘣𝘢𝘣𝘭𝘺 𝘯𝘰𝘵 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘧𝘳𝘰𝘮 𝘱𝘦𝘳𝘴𝘰𝘯 𝘵𝘰 𝘱𝘦𝘳𝘴𝘰𝘯, 𝘣𝘶𝘵 𝘮𝘰𝘴𝘵 𝘱𝘦𝘰𝘱𝘭𝘦 𝘸𝘪𝘭𝘭 𝘢𝘨𝘳𝘦𝘦 𝘵𝘩𝘢𝘵 𝘪𝘵 𝘪𝘴 𝘯𝘰𝘵 𝘢 𝘴𝘪𝘮𝘱𝘭𝘦 𝘵𝘢𝘴𝘬. 𝘛𝘩𝘦 𝘱𝘳𝘪𝘯𝘤𝘪𝘱𝘭𝘦 𝘰𝘧 𝘮𝘢𝘬𝘪𝘯𝘨 𝘤𝘰𝘧𝘧𝘦𝘦 𝘢𝘳𝘦 𝘢𝘤𝘵𝘶𝘢𝘭𝘭𝘺 𝘴𝘪𝘮𝘱𝘭𝘦, 𝘶𝘴𝘪𝘯𝘨 𝘸𝘢𝘵𝘦𝘳 𝘵𝘰 𝘣𝘳𝘪𝘯𝘨 𝘰𝘶𝘵 𝘵𝘩𝘦 𝘩𝘪𝘥𝘥𝘦𝘯 𝘧𝘭𝘢𝘷𝘰𝘳𝘴 𝘧𝘳𝘰𝘮 𝘵𝘩𝘦 𝘣𝘦𝘢𝘯𝘴. 𝘛𝘩𝘦 𝘥𝘪𝘧𝘧𝘪𝘤𝘶𝘭𝘵 𝘱𝘢𝘳𝘵 𝘰𝘧 𝘮𝘢𝘬𝘪𝘯𝘨 𝘢 𝘥𝘦𝘭𝘪𝘤𝘪𝘰𝘶𝘴 𝘤𝘶𝘱 𝘪𝘴 𝘵𝘩𝘢𝘵 𝘣𝘢𝘳𝘪𝘴𝘵𝘢𝘴 𝘮𝘶𝘴𝘵 𝘳𝘦𝘢𝘭𝘭𝘺 𝘶𝘯𝘥𝘦𝘳𝘴𝘵𝘢𝘯𝘥 𝘵𝘩𝘦 𝘤𝘰𝘧𝘧𝘦𝘦 𝘣𝘦𝘢𝘯𝘴, 𝘥𝘪𝘭𝘪𝘨𝘦𝘯𝘵𝘭𝘺 𝘱𝘳𝘢𝘤𝘵𝘪𝘤𝘦 𝘵𝘩𝘦𝘪𝘳 𝘤𝘳𝘢𝘧𝘵 𝘵𝘰 𝘨𝘦𝘵 𝘵𝘩𝘦 𝘣𝘦𝘴𝘵 𝘵𝘢𝘴𝘵𝘦 𝘰𝘧 𝘦𝘷𝘦𝘳𝘺 𝘤𝘶𝘱.
+            div(class="section-4__bottom-button")
+                a(href="#" class="btn btn--outline") more
+                    i(class="fa-solid fa-angle-right")
+    //End section 4           

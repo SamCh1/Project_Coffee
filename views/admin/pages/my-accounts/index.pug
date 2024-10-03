@@ -1,0 +1,21 @@
+extends ../../layouts/default.pug
+
+block main 
+            section.py-0
+            .container.px-4.px-lg-5.my-5
+                .row.gx-1.gx-lg-1.align-items-center
+                    .col-md-3
+                        img.card-img-top.mb-5.mb-md-0(src=user.avatar)
+                        a.card-img-top.mb-5.mb-md-0(               
+                            href=`/${prefixAdmin}/my-account/edit`
+                            class= "btn btn-primary"
+                        ) Chỉnh sửa thông tin
+                    .col-md-3
+                        .small.mb-1 Thông tin cá nhân
+                          h1(class="mb-4") #{user.fullName}
+                        .fs-2.mb-2  
+                            div(class="mb-4") email: <b>#{user.email}</b>
+                            div(class="mb-4") Phone: <b>#{user.phone}</b>
+                            div(class="mb-4") Trạng Thái: <b>#{user.status === "active" ? "Hoạt động" : "Dừng hoạt động"}</b>       
+                            if(role.title)
+                                div(class="mb-4") Phân Quyền: <b>#{role.title}</b>
