@@ -13,12 +13,8 @@ if(formSendData){
 }
 
 socket.on("SERVER_SEND_MESSAGE", (data) => {
-    console.log("here")
-    console.log(data)
     const body = document.querySelector(".chat .inner-body");
-    console.log(body);
     const myId = document.querySelector("[my-id]").getAttribute("my-id");
-    console.log(myId);
     const div = document.createElement("div");
     let htmlFullName = "";
 
@@ -35,4 +31,13 @@ socket.on("SERVER_SEND_MESSAGE", (data) => {
     `;
 
     body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
 })
+
+// Scroll Chat To Bottom
+const bodyChat = document.querySelector(".chat .inner-body");
+if(bodyChat){
+    bodyChat.scrollTop = bodyChat.scrollHeight;
+}
+
+// End Scroll Chat To Bottom
