@@ -25,7 +25,7 @@ module.exports.index = async(req, res) => {
     }
     
     
-    res.render("client/pages/order/index", {
+    res.render("client_v2/pages/order/index", {
         pagetile: "Thanh toán sản phẩm",
         cartDetail: cart,
     });
@@ -99,7 +99,7 @@ module.exports.success = async (req,res) => {
     }
 
 
-    res.render("client/pages/order/success",{
+    res.render("client_v2/pages/order/success",{
         pagetile: "Đặt hàng thành công",
         order: order
     });

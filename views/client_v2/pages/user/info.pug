@@ -1,10 +1,64 @@
 extends ../../layouts/default.pug
-include ../../mixins/box-head.mixins.pug
 
 block main
-  .container.my-3
-    .row
-      .col-12
-        +box-head("Thông tin tài khoản")
-
-        div #{infoUser.fullName}
+  div(class="form__info")
+    div(class="container")
+      div(class="form__info-wrap")
+          div(class="form__info-top")
+            h1(class="login__form-text") Tài Khoản
+          div(class="form__section1")
+            div(class="form__info-middle")
+              div(class="form__avatar")
+                img(class="avatar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png")
+              div(class="form__info-user")
+                h1(class="form__info-name")
+                  i(class="fa-solid fa-signature")
+                  span #{infoUser.fullName}
+                h2(class="form__info-point") 
+                  if(infoUser.score == NULL || infoUser.score < 200)
+                    i(class="fa-solid fa-medal" style="color:#C77B30;")
+                  else if(infoUser.score < 500)
+                    i(class="fa-solid fa-medal" style="color:#BABABA;")
+                  else if(infoUser.score < 800)
+                    i(class="fa-solid fa-medal" style="color:#F7D002;")
+                  if(infoUser.score == NULL)
+                    span 0 score
+                  else 
+                    span #{infoUser.score} score
+            div(class="form__middle-center")
+              a(href="" class="form__center-text") 
+                i(class="fa-solid fa-pencil") 
+                | Thông tin
+              div(class="") | 
+              a(href="" class="form__center-text") 
+                i(class="fa-solid fa-truck")  
+                | Giao dịch
+              div(class="") | 
+              a(href="" class="form__center-text") 
+                i(class="fa-solid fa-bell")
+                | Thông báo
+          //-Product item
+          div(class="form__list")
+            a(href="#" class="form__item")
+              div(class="form__item-img")
+                h1(class="")
+                  i(class="fa-solid fa-gift")
+              div(class="form-item__meta-item")
+                  h1(class="") Đổi Quà 
+            a(href="#" class="form__item")
+              div(class="form__item-img")
+                h1(class="")
+                  i(class="fa-solid fa-gifts")
+              div(class="form-item__meta-item")
+                  h1(class="") Rewards 
+            a(href="#" class="form__item")
+              div(class="form__item-img")
+                h1(class="")
+                  i(class="fa-solid fa-gem")
+              div(class="form-item__meta-item")
+                  h1(class="") Hội Viên 
+          //-End Product item    
+          div(class="form__info-bottom" style="text-align:center; margin: 20px 0")
+            a(href="/user/logout" class="btn btn--outline")
+              i(class="fa-solid fa-arrow-right-from-bracket")
+              span Thoát

@@ -2,8 +2,10 @@ const User = require("../../models/user.model")
 const paginationHelper = require("../../helpers/pagination.helper")
 const filterStatusHelper = require("../../helpers/filterState.helper")
 const systemCongif = require("../../config/system")
-module.exports.index = async (req,res) => {  
-    
+
+
+//[Get] /admin/users
+module.exports.index = async (req,res) => {    
     try {
         const filterState = filterStatusHelper(req.query);
         const find = {
@@ -14,15 +16,19 @@ module.exports.index = async (req,res) => {
             find.status = req.query.status;
         };
 
+        //Search
+        if(req.query.keyword){
+            const regex = new RegExp(req.query.keyword, "i");
+            find.email = regex;
+            // reExp: "so khớp chuỗi , 'i' là so khớp không phân biệt hoa hay thường "
+        }
+
         /*Pagination */
         const countUser = await User.countDocuments(find);
         const objectPagination = paginationHelper(4, req.query, countUser);
 
-
-        const user = await User.find({
-            deleted:false,
-            status: "active"
-        })
+        console.log(find);
+        const user = await User.find(find)
             .limit(objectPagination.limitItem)
             .skip(objectPagination.skip);
         
@@ -31,7 +37,8 @@ module.exports.index = async (req,res) => {
             title:"Trang thông tin khách hàng",
             user: user,
             pagination: objectPagination,
-            filterState: filterState
+            filterState: filterState,
+            keyword: req.query.keyword
         });
 
 

@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema(
         tokenUser: String,
         phone: String,
         avatar: String,
+        score: Number,
         status: {
             type: String,
             default: "active"

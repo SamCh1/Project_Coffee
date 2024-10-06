@@ -1,6 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/pagination.mixins.pug
-
+include ../../mixins/search.mixins.pug
 block main
   h1(class="mb-4") Danh sách tài khoản
 
@@ -9,6 +9,7 @@ block main
     .card-body
       .row
         .col-8
+          +search(keyword)
         .col-4.text-right
           a(
             href=`/${prefixAdmin}/users/create`

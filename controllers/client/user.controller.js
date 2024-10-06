@@ -6,7 +6,7 @@ const generate = require("../../helpers/generate.helper")
 const sendMailHelper = require("../../helpers/send-mail.helper")
 //[GET] /user/register
 module.exports.register = (req,res) => {
-    res.render("client/pages/user/register", {
+    res.render("client_v2/pages/user/register", {
         pagetitle: "Trang đăng ký"
     })
 }
@@ -28,6 +28,7 @@ module.exports.registerPost = async (req,res) =>{
         fullName: req.body.fullName,
         email: req.body.email,
         password: md5(req.body.password),
+        score: 0,
         tokenUser: generate.generateRandomString(30),
     };
     
@@ -90,7 +91,7 @@ module.exports.logout = (req, res) => {
 
 //[GET] /user/password/forgot
 module.exports.forgotPassword =  (req, res) => {
-    res.render("client/pages/user/forgot-password.pug")
+    res.render("client_v2/pages/user/forgot-password.pug")
 }
 
 //[POST] /user/password/forgot
@@ -131,7 +132,7 @@ module.exports.forgotPasswordPost = async (req, res) => {
 //[GET] /user/password/otp
 module.exports.otpPassword = (req,res) => {
     const email = req.query.email
-    res.render("client/pages/user/otp-password", {
+    res.render("client_v2/pages/user/otp-password", {
         pagetile: "Nhập mã OTP",
         email: email,
     })
@@ -167,7 +168,7 @@ module.exports.otpPasswordPost = async (req,res) => {
 
 //[GET] /user/password/reset
 module.exports.resetPassword = (req,res) =>{
-    res.render("client/pages/user/reset-password", {
+    res.render("client_v2/pages/user/reset-password", {
         pagetitle: "Đổi mật khẩu",
     });
 }
@@ -191,7 +192,7 @@ module.exports.resetPasswordPost = async (req,res) =>{
 
 //[GET] /user/info
 module.exports.info = (req,res) =>{
-    res.render("client/pages/user/info",{
+    res.render("client_v2/pages/user/info",{
         pagetitle:"Thông tin tài khoản",
     })
 }

@@ -12,7 +12,6 @@ module.exports.index = async (req, res) =>{
     for (const item of productFeatured) {
         item.priceNew = (item.price * (100 - item.discountPercentage)/100).toFixed(0);
     }
-    console.log(productFeatured.priceNew);
     //Lasted products
     const productNew = await product.find({
         status: "active",   
