@@ -1634,6 +1634,7 @@ a {
   padding: 5px 10px;
   border-radius: 15px;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
 .chat .inner-outgoing .inner-content {
@@ -1650,6 +1651,7 @@ a {
 .chat .inner-form {
   display: flex;
   align-items: center;
+  padding: 0 10px;
 }
 
 .chat .inner-form input {
@@ -1711,6 +1713,10 @@ a {
 .chat .inner-preview-images .image-preview-item {
   width: 90px;
   background-size: contain;
+}
+
+.tooltip:not(.shown){
+  display:none;
 }
 /* End chat */
 

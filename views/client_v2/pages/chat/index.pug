@@ -11,20 +11,6 @@ block main
                         if(chat.user_id != user.id)
                             div(class="inner-name") #{chat.infoUser.fullName}
                         div(class="inner-content") #{chat.content}
-                    //- div(class="inner-outgoing")
-                //-     div(class="inner-content")
-                //-         | Thế à ? Ok em 
-                //- div(class="inner-incoming")
-                //-     div(class="inner-name") Em yêu
-                //-     div(class="inner-content")
-                //-         | Nhanh nha nhanh nha 
-                //- div(class="inner-outgoing")
-                //-     div(class="inner-content")
-                //-         | CK đến nơi rồi mà thấy ai ở nhà đâu e? khóa cửa mà 
-                //- div(class="inner-incoming")
-                //-     div(class="inner-name") Em yêu
-                //-     div(class="inner-content")
-                //-         | Thì em bảo nhà em không có ai ở nhà mà 
             div(class="inner-footer")
                 form(
                     class="inner-form"
@@ -35,5 +21,10 @@ block main
                         placeholder="Nhập nội dung...."
                         name="content"
                     )
+                    span(class="button-icon" style="padding:10px; font-size:32px; cursor:pointer;")
+                        i(class="fa-regular fa-face-smile")
                     button
                         i(class="fa-solid fa-paper-plane")
+
+    div(class="tooltip" role="tooltip")        
+        <emoji-picker></emoji-picker>
