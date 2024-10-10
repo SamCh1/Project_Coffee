@@ -1,0 +1,37 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.mixins.pug
+
+block main 
+    .container.my-3 
+        .row 
+            .col-12
+                p Phòng chat
+        .row.mb-13
+            .col-12 
+                a(
+                    href="/admin/rooms-chat/create"
+                    class="btn btn-sm btn-success mr-1"
+                ) Tạo Phòng Chat
+        .row
+            each room of listRoomChat 
+                div(class="box-room")
+                    .col-6 
+                        div(class="inner-info")
+                            div(class="inner-name") #{room.title}
+                    .col-6            
+                        div(class="inner-buttons")
+                            a(
+                                href=`/admin/chat/${room.id}`
+                                class="btn btn-sm btn-primary mr-1") Nhắn
+        .row.mb-13 
+            .col-6 
+                div(class="box-room")
+                    div(class="inner-info")
+                        div(class="inner-name") 
+            .col-6            
+                div(class="inner-buttons")
+                    a(
+                        href=`/admin/chat`
+                        class="btn btn-sm btn-primary mr-1") Nhắn
+
+                

@@ -24,11 +24,9 @@ module.exports.requireAuth = async (req, res, next) => {
             _id: user.role_id,
             deleted: false,
         })
-        console.log(role);
 
         res.locals.user = user;
         res.locals.role = role;
-
 
         next();
     } catch (error) {

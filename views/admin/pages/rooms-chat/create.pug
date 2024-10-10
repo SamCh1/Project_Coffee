@@ -1,0 +1,45 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.mixins.pug
+
+block main
+  .container.my-3
+    .row
+      .col-12
+        p Tạo Phòng
+
+    .row
+      .col-12
+        form(
+          action=`/admin/rooms-chat/create`
+          method="POST"
+        )
+          div(class="form-group")
+            label(for="title") Tiêu đề
+            input(
+              type="text"
+              class="form-control"
+              id="title"
+              name="title"
+              required
+            )
+          div(class="form-group")
+            label Thêm thành viên
+            each admin in adminList
+              div(class="form-check")
+                input(
+                  class="form-check-input"
+                  type="checkbox"
+                  value= admin.id 
+                  id= admin.id
+                  name= "userId"
+                )
+                label(
+                  class="form-check-label"
+                  for=admin.id
+                ) #{admin.fullName}
+
+          div(class="form-group")
+            button(
+              type="submit"
+              class="btn btn-primary"
+            ) Tạo

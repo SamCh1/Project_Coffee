@@ -135,8 +135,8 @@ block main
                                     if(item.createdBy.fullName)
                                         p #{item.createdBy.fullName}
                                 td 
-                                    if(item.createdBy.createdAt)
-                                        +formatDateTime(item.createdBy.createdAt)
+                                    if(item.createdAt)
+                                        +formatDateTime(item.createdAt)
                                 td 
                                     a(
                                         href=`/${prefixAdmin}/products/detail/${item.id}`

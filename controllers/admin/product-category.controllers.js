@@ -36,7 +36,6 @@ module.exports.createPost = async (req, res) =>{
     } else {
         req.body.position = parseInt(req.body.position);
     }
-    console.log(req.body);
 
     const record = new ProductCategory(req.body);
     await record.save();
@@ -52,8 +51,6 @@ module.exports.edit = async (req, res) =>{
             _id: req.params.id,
             deleted: false,
         })
-    
-        console.log(data)
         
         const records = await ProductCategory.find({
             deleted: false,

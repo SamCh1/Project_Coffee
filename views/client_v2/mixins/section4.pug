@@ -1,0 +1,11 @@
+mixin section-4(id, title, subtitle, thumbnail, desc)
+    //section 4
+    div(class=`section-4__item ${num ? num : ""}` data-aos="zoom-in-left")
+        div(class="section-4__img")
+            img(loading="lazy" src=thumbnail class="" alt=title)
+        div(class="section-4__content")
+            div(class="section-4__tag") #{subtitle}
+            h3(class="section-4__title")
+                a(href=`/blog/detail/${id}`) #{title}
+            div(class="section-4__desc") 
+                p !{desc}

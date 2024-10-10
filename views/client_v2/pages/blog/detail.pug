@@ -1,0 +1,22 @@
+extends ../../layouts/default.pug
+
+block main
+    div(class="blog__detail")
+        div(class="blog__img" style=`background-image:url(${blog.thumbnail})`)
+        div(class="container")
+            div(class="blog__detail-wrap")
+                //breadscrum
+                div(class="breadscrum")
+                    div(class="container")
+                        div(class="breadscrum__wrap")
+                            a(href="/" class="breadscrum__link") Trang chủ
+                            a(href="/products" class="breadscrum__link") blog
+                //End breadscrum
+
+                div(class="blog__title") #{blog.title}
+                div(class="blog__subtitle") #{blog.subtitle} 
+                    i(class="fa-solid fa-heart") 
+                div(class="blog__content")
+                    p !{blog.description}       
+
+        

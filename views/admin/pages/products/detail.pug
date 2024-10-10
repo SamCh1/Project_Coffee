@@ -10,18 +10,12 @@ block main
                           img.card-img-top.mb-5.mb-md-0(src=product.thumbnail)
                     .col-md-6
                         if(product.title)
-                          .small.mb-1 StoreCS
+                          .small.mb-1 Coffee-Point
                         if(product.title)
                           h1(class="mb-4") #{product.title}
                         .fs-5.mb-5  
-                            if (product.origin)
-                              div(class="mb-4") Year: <b>#{product.origin}$</b>
-                            
-                            if (product.)
-                              div(class="mb-4") Year: <b>#{product.year}$</b>
-                            
                             if (product.price)
-                              div(class="mb-4") Giá: <b>#{product.price}$</b>
+                              div(class="mb-4") Giá: <b>#{product.price}VND</b>
                             
                             if (product.discountPercentage)
                               div(class="mb-4") Giảm giá: <b>#{product.discountPercentage}%</b>

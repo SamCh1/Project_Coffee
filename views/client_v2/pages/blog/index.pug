@@ -1,0 +1,32 @@
+extends ../../layouts/default.pug
+include ../../mixins/section4.pug
+block main
+        div(class="blog")
+            div(class="container")
+                div(class="blog__wrap")
+                    //breadscrum
+                    div(class="breadscrum")
+                        div(class="container")
+                            div(class="breadscrum__wrap")
+                                a(href="/" class="breadscrum__link") Trang chủ
+                                a(href="/products" class="breadscrum__link") blog
+                    //End breadscrum
+                    div(class="box-head" style="margin-top: 20px;")
+                        div(class="box-head__left")
+                            div(class="box-head__sub-title") <i class="fa-solid fa-mug-hot" style="font-size:24px;"></i> Các trang blog về chúng tôi! 
+                            h3(class="box-head__title") Thêm một bài blog thêm một kiến thức hữu ích về cà phê
+                    if blogs && blogs.length > 0
+                        div(class="blog__list section-4__wrap" style="margin-bottom:30px")
+                            each items in blogs
+                                +section-4(
+                                    items.id,
+                                    items.title,
+                                    items.subtitle,
+                                    items.thumbnail,
+                                    items.description,
+                                )
+                    else
+                        h1(style="margin:120px 0; color: red; text-align:center;") Hiện tại không có bài viết nào
+
+
+        

@@ -30,7 +30,6 @@ module.exports.create = async (req, res) =>{
         deleted: false
     });
 
-    console.log(roles);
 
     res.render("admin/pages/accounts/create", {
         pageTitle: "Thêm mới tài khoản",
@@ -59,7 +58,7 @@ module.exports.edit = async (req, res) => {
         });
         
         res.render("admin/pages/accounts/edit",{
-            pageTitle: "Chỉnh sửa sản phẩm",
+            pageTitle: "Chỉnh sửa tài khoản",
             data: data,
             roles: roles,
         });
@@ -82,7 +81,7 @@ module.exports.editPatch = async (req, res) => {
   await Account.updateOne({
         _id: id
   }, req.body);
-
+  req.flash('Success',"Cập nhật tài khoản thành công");
   res.redirect("back");
 }
 
@@ -98,6 +97,7 @@ module.exports.deleteAccount = async (req, res) => {
         });
         req.flash('Success',"Xóa tài khoản thành công");
     } catch (error) {
+        req.flash('error',"Xóa tài khoản thất bại");
         console.log("error")  
     } finally {
         res.redirect("back");

@@ -5,13 +5,14 @@ const cartRoutes = require("./cart.route")
 const checkoutRoutes = require("./checkout.route")
 const userRoutes = require("./user.route")
 const ariticleRoutes = require("./article.route")
-const chatRoutes = require("./chat.route")
+const blogRoutes = require("./blog.route")
+// const chatRoutes = require("./chat.route")
 
 const caterogyMiddleware = require("../../middlewares/client/caterogy.middleware")
 const cartMiddleware = require("../../middlewares/client/cart.middleware")
 const userMiddleware = require("../../middlewares/client/user.middleware")
 const settingMiddleware = require("../../middlewares/client/setting.middleware")
-const authMiddleware = require("../../middlewares/client/auth.middleware.js")
+// const chatMiddleware = require("../../middlewares/client/chat.middleware")
 
 module.exports = (app) => {
     app.use(caterogyMiddleware.caterogy); // để tất cả route đều phải chạy vào middleware này
@@ -21,6 +22,8 @@ module.exports = (app) => {
     app.use(userMiddleware.infoUser);
 
     app.use(settingMiddleware.settingGeneral);
+
+    // app.use(chatMiddleware.ChatBot)
 
     app.use("/", homeRoutes);
     
@@ -36,6 +39,7 @@ module.exports = (app) => {
 
     app.use("/article", ariticleRoutes)
 
-    app.use("/chat", authMiddleware.requireAuth, chatRoutes)
+    app.use("/blog", blogRoutes)
+    // app.use("/chat", chatRoutes)
 }
 

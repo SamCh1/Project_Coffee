@@ -1,21 +1,18 @@
 extends ../../layouts/default.pug
 include ../../mixins/pagination.mixins.pug
 include ../../mixins/search.mixins.pug
+include ../../mixins/alert.mixins.pug
 block main
   h1(class="mb-4") Danh sách tài khoản
-
+  +alert-success(5000)
+  +alert-error(5000)
   .card.mb-3
     .card-header Danh sách
     .card-body
       .row
         .col-8
           +search(keyword)
-        .col-4.text-right
-          a(
-            href=`/${prefixAdmin}/users/create`
-            class="btn btn-outline-success"
-          ) + Thêm mới
-
+      .row    
       table(
         class="table table-hover table-sm"
       )

@@ -10,6 +10,12 @@ const accountSchema = new mongoose.Schema(
         avatar: String,
         role_id: String,
         status: String,
+        friendsList: [
+            {
+                user_id: String,
+                room_chat_id: String
+            }
+        ],
         deleted: {
             type: Boolean,
             default: false,

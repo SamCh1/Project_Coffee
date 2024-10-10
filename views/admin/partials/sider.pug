@@ -18,5 +18,11 @@
             if(role.permissions.includes("accounts_view")) 
                 li 
                     a(href=`/${prefixAdmin}/accounts`) Danh sách tài khoản
+            if(role.permissions.includes("accounts_view")) 
+                li
+                    a(href=`/${prefixAdmin}/users`) Danh sách tài khoản khách hàng
+            if(role.permissions.includes("blogs_view")) 
+                li
+                    a(href=`/${prefixAdmin}/blogs`) Danh sách bài viết
             li 
                 a(href=`/${prefixAdmin}/settings/general`) Cài đặt chung
