@@ -1,0 +1,8 @@
+mixin section-6(id, title, thumbnail, score, sub)    
+    div(class="section-6__item")
+        div(class="section-6__item-img")
+            img(src=thumbnail class="" alt="voucher")
+        div(class="section-6__item-title") #{title}
+        div(class="section-6__item-score") #{score} điểm
+        div(class="section-6_item-action")  
+            a(href=`/gift/exchange/${sub}/${id}` class="btn btn-outline") Đổi

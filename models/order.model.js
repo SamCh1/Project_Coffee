@@ -16,7 +16,12 @@ const orderSchema = new mongoose.Schema(
                 discountPercentage: Number,
                 quantity: Number,
             },
-        ], 
+        ],
+        users: {
+            user_id: String,
+            email: String
+        },
+        totalPrice: Number
     },
     {
         timestamps: true,

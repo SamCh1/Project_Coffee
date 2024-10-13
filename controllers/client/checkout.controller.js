@@ -1,7 +1,8 @@
 const Cart = require("../../models/cart.model")
 const Product = require("../../models/product.model")
 const Order = require("../../models/order.model")
-
+const user = require("../../models/user.model")
+const User = require("../../models/user.model")
 
 //[GET] /checkout
 module.exports.index = async(req, res) => {
@@ -35,43 +36,75 @@ module.exports.index = async(req, res) => {
 module.exports.order = async(req, res) => {
     const cartId = req.cookies.cartId
     const infoUser = req.body;
-
+    const user = res.locals.user;
     const orderInfo = {
         card_id: cartId,
         userInfo: infoUser,
         products:[],
     } 
-
-    const cart = await Cart.findOne({
-        _id: cartId,
-    })
-
-    for(const product of cart.products){
-        const infoProduct = await Product.findOne({
-            _id: product.product_id,
+    try {
+        const cart = await Cart.findOne({
+            _id: cartId,
+        })
+    
+        let totalPrice = 0;
+    
+        for(const product of cart.products){
+            const infoProduct = await Product.findOne({
+                _id: product.product_id,
+            });
+    
+            //total price
+            infoProduct.priceNew = (infoProduct.price * (100 - infoProduct.discountPercentage)/100).toFixed(0);
+            product.productInfo = infoProduct;
+            product.totalPrice = product.quantity * infoProduct.priceNew;
+    
+            totalPrice += product.totalPrice;
+    
+            const objectProduct = {
+                product_id: product.product_id,
+                price: infoProduct.price,
+                discountPercentage: infoProduct.discountPercentage,
+                quantity: product.quantity,
+                totalPrice: infoProduct.totalPrice
+            };
+            orderInfo.products.push(objectProduct);
+        }
+        
+        orderInfo.totalPrice = totalPrice;
+        
+        if(user){
+            orderInfo.users = {
+                user_id: user.id,
+                email:user.email
+            };
+            if(totalPrice >= 100000 ){
+                const currentScore =  Math.floor(totalPrice / 100000);
+                const Score =  currentScore * 10;
+                await User.updateOne({
+                    _id: user.id
+                },{
+                    score: Score
+                })
+            }
+        }
+    
+        const order = new Order(orderInfo)
+        await order.save();
+    
+        await Cart.updateOne({
+            _id: cartId,
+        },{
+            products: [],
         });
-
-        const objectProduct = {
-            product_id: product.product_id,
-            price: infoProduct.price,
-            discountPercentage: infoProduct.discountPercentage,
-            quantity: product.quantity,
-        };
-        orderInfo.products.push(objectProduct);
+        
+        res.redirect(`/checkout/success/${order.id}`)
+    } catch (error) {
+        console.log(error);
+        req.flash('error', 'Đã có lỗi xảy ra ! vui lòng thử lại.')
+        res.redirect(`back`)
     }
     
-    const order = new Order(orderInfo)
-    await order.save();
-
-    console.log(order);
-    
-    await Cart.updateOne({
-        _id: cartId,
-    },{
-        products: [],
-    });
-    
-    res.redirect(`/checkout/success/${order.id}`)
 }
 
 module.exports.success = async (req,res) => {

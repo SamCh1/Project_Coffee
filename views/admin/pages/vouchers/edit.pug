@@ -1,0 +1,145 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.mixins.pug
+include ../../mixins/select-tree.mixins.pug
+block main
+  if(role.permissions.includes("products_edit"))
+    +alert-error(5000)
+    +alert-success(5000)
+    h1(class="mb-4") Chỉnh sửa sản phẩm
+
+    form(
+      action=`/${prefixAdmin}/vouchers/edit/${voucher.id}?_method=PATCH`
+      method="POST"
+      enctype="multipart/form-data"
+    )
+      div(class="form-group")
+        label(for="title") Tiêu đề
+        input(
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          required
+          value=voucher.title
+        )
+      div(class="form-group")
+          label(for="gift_category_id") Danh mục 
+          select(
+            name="gift_category_id"
+            id="gift_category_id"
+            class="form-control"
+          )
+            option(value="") -- Chọn danh mục  --
+            if(records)   
+              +select-tree(records, 1, voucher.gift_category_id)    
+      div(class="form-group form-check form-check-inline")
+        input(
+          type="radio"
+          class="form-check-input"
+          id="featured1"
+          name="featured"
+          value="1"
+          checked = (voucher.featured == "1" ? true : false)
+        )
+        label(for="featured1" class="form-check-label") Nổi bật
+      div(class="form-group form-check form-check-inline")
+        input(
+          type="radio"
+          class="form-check-input"
+          id="featured0"
+          name="featured"
+          value="0"
+          checked = (voucher.featured == "0" ? true : false)
+        )
+        label(for="featured0" class="form-check-label") không nổi bật
+      div(class="form-group")
+        label(for="desc") Mô tả 
+        textarea(
+          class="form-control"
+          id="desc"
+          name="description"
+          rows="5"
+          textarea-mce 
+        ) #{voucher.description}
+      div(class="form-group")
+        label(for="score") Điểm quy đổi
+        input(
+          type="number"
+          class="form-control"
+          id="score"
+          name="score"
+          value=voucher.score
+          min="0"
+        )
+      div(class="form-group")
+        label(for="discount") % Giảm giá
+        input(
+          type="number"
+          class="form-control"
+          id="discount"
+          name="discountPercentage"
+          value=voucher.discountPercentage
+          min="0"
+          max="50"
+        )
+      div(class="form-group")
+        label(for="stock") Số lượng
+        input(
+          type="number"
+          class="form-control"
+          id="stock"
+          name="stock"
+          value=voucher.score
+          min="0"
+        )
+      div(class="form-group" upload-image)
+        label(for="thumbnail") Ảnh
+        input(
+          type="file"
+          class="form-control-file"
+          id="thumbnail"
+          name="thumbnail"
+          accept="images/*"
+          upload-image-input
+        )
+        img(
+          src=voucher.thumbnail
+          class="image-preview"
+          upload-image-preview
+        )
+      div(class="form-group")
+        label(for="position") Vị trí
+        input(
+          type="number"
+          class="form-control"
+          id="position"
+          name="position"
+          placeholder="Tự động tăng"
+          min="1"
+          value=voucher.position
+        )
+      div(class="form-group form-check form-check-inline")
+        input(
+          type="radio"
+          class="form-check-input"
+          id="statusActive"
+          name="status"
+          value="active"
+          checked = (voucher.status == "active" ? true : false)
+        )
+        label(for="statusActive" class="form-check-label") Hoạt động
+      div(class="form-group form-check form-check-inline")
+        input(
+          type="radio"
+          class="form-check-input"
+          id="statusInActive"
+          name="status"
+          value="inactive"
+          checked = (voucher.status == "inactive" ? true : false)
+        )
+        label(for="statusInActive" class="form-check-label") Dừng hoạt động
+      div(class="form-group")
+        button(
+          type="submit"
+          class="btn btn-primary"
+        ) Cập nhật

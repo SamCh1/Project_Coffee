@@ -6,6 +6,7 @@ const checkoutRoutes = require("./checkout.route")
 const userRoutes = require("./user.route")
 const ariticleRoutes = require("./article.route")
 const blogRoutes = require("./blog.route")
+const giftRoutes = require("./gift.route")
 // const chatRoutes = require("./chat.route")
 
 const caterogyMiddleware = require("../../middlewares/client/caterogy.middleware")
@@ -40,6 +41,8 @@ module.exports = (app) => {
     app.use("/article", ariticleRoutes)
 
     app.use("/blog", blogRoutes)
+
+    app.use("/gift", giftRoutes)
     // app.use("/chat", chatRoutes)
 }
 

@@ -1,0 +1,46 @@
+extends ../../layouts/default.pug
+include ../../mixins/section3.pug
+include ../../mixins/section6.pug
+include ../../mixins/product-item.pug
+
+    title #{title}
+block main
+    style. 
+        html {
+            scroll-behavior: smooth;
+        }
+    
+    //breadscrum
+    div(class="breadscrum")
+        div(class="container")
+            div(class="breadscrum__wrap")
+                a(href="/" class="breadscrum__link") Trang chủ
+                a(href="/products" class="breadscrum__link") Đổi thưởng
+                a(href="#" class="breadscrum__link") Quà
+    //End breadscrum
+
+    //section 3
+    +section-3()
+    //End section 3
+
+    //section 6
+    div(class="section-6")
+        div(class="container")
+            div(class="box-head")
+                div(class="box-head__left")
+                    div(class="box-head__sub-title") Đổi thưởng
+                    h2(class="box-head__title") Mã Voucher 
+                        i(class="fa-solid fa-ticket")
+            div(class="section-6__wrap")
+                div(class="section-6__list")
+                    each item in vouchers
+                        +section-6(item.id, item.title, item.thumbnail, item.score, "voucher")
+            div(class="box-head")
+                div(class="box-head__left")
+                    div(class="box-head__sub-title") Đổi thưởng
+                    h2(class="box-head__title") Quà thưởng khác 
+                        i(class="fa-solid fa-gift")                      
+            div(class="section-6__list")
+                each item in gifts 
+                    +section-6(item.id, item.title, item.thumbnail, item.score, "gift")        
+        

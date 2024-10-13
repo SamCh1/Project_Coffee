@@ -21,7 +21,7 @@ block main
                     i(class="fa-solid fa-medal" style="color:#BABABA;")
                   else if(infoUser.score < 800)
                     i(class="fa-solid fa-medal" style="color:#F7D002;")
-                  else if(infoUser.score < 800)
+                  else if(infoUser.score < 1000)
                     i(class="fa-solid fa-medal" style="color:#B2D1E0;")
                   if(infoUser.score == NULL)
                     span 0 score
@@ -41,7 +41,7 @@ block main
                 | Thông báo
           //-Product item
           div(class="form__list")
-            a(href="#" class="form__item")
+            a(href="/gift" class="form__item")
               div(class="form__item-img")
                 h1(class="")
                   i(class="fa-solid fa-gift")

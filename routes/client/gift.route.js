@@ -1,0 +1,9 @@
+const express = require("express");
+const router = express.Router();
+
+const controller = require("../../controllers/client/gift.controller");
+
+router.get("/", controller.index);
+router.get("/detail/:id", controller.detail);
+router.get("/exchange/voucher/:id", controller.exchangeVoucher);
+module.exports = router;

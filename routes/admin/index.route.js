@@ -11,7 +11,9 @@ const userRoutes = require("./user.route")
 const blogRoutes = require("./blog.route")
 const roomsChatRoutes = require("./rooms-chat.route")
 const chatRoutes = require("./chat.route")
-
+const giftCategoryRoutes = require("./gift-category.route")
+const giftRoutes =require("./gift.route")
+const voucherRoutes = require("./voucher.route")
 const authMiddleware = require("../../middlewares/admin/auth.middleware")
 
 
@@ -27,6 +29,9 @@ module.exports = (app) => {
     app.use(`${PATH_ADMIN}/settings`, authMiddleware.requireAuth, settingRoutes );
     app.use(`${PATH_ADMIN}/users`, authMiddleware.requireAuth, userRoutes);
     app.use(`${PATH_ADMIN}/blogs`, authMiddleware.requireAuth, blogRoutes);
+    app.use(`${PATH_ADMIN}/gifts-category`, authMiddleware.requireAuth, giftCategoryRoutes);
+    app.use(`${PATH_ADMIN}/gifts`, authMiddleware.requireAuth, giftRoutes);
+    app.use(`${PATH_ADMIN}/vouchers`, authMiddleware.requireAuth, voucherRoutes);
     app.use(`${PATH_ADMIN}/rooms-chat`,authMiddleware.requireAuth, roomsChatRoutes);
     app.use(`${PATH_ADMIN}/chat`, authMiddleware.requireAuth, chatRoutes);
 }

@@ -683,6 +683,49 @@ a {
 }
 /* End section 4 */
 
+/*Section 6*/
+
+.section-6__list{
+  margin-bottom:30px;
+}
+
+.section-6__item{
+  border: 1px solid #616161;
+  display:flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  width:100%;
+  padding:10px 20px;
+  border-radius: 18px;
+  /* background: linear-gradient(to top, #ede8da, #fffbe8); */
+  margin-top:10px;
+  background-color: white; 
+}
+
+.section-6__item-img{
+  width:170px;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.section-6__item-img img{
+  width:100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.section-6__item-title{
+  font-size: 24px;
+  font-weight:700;
+}
+
+.section-6__item-score{
+  color: red;
+}
+
+/*End section 6*/
+
 /* Footer */
 .footer {
   padding: 60px;

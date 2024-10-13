@@ -10,7 +10,7 @@ module.exports.index = async (req,res) => {
     });
 
     cart.totalPrice = 0;
-
+    
     if(cart.products.length > 0){
         for(const item of cart.products){
             const product = await Product.findOne({
