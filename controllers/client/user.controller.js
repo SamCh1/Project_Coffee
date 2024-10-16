@@ -1,5 +1,7 @@
 const md5 = require("md5");
 const User = require("../../models/user.model")
+const Product = require("../../models/product.model")
+const Order = require("../../models/order.model")
 const Cart = require("../../models/cart.model")
 const ForgotPassword = require("../../models/forgot-password.models") 
 const generate = require("../../helpers/generate.helper")
@@ -195,4 +197,50 @@ module.exports.info = (req,res) =>{
     res.render("client_v2/pages/user/info",{
         pagetitle:"Thông tin tài khoản",
     })
+}
+
+//[GET] /user/info/transaction
+module.exports.transaction = async (req, res) => {
+    const userId = res.locals.user.id
+    const Orders = await Order.find({
+        'users.user_id': userId
+    })
+    
+    res.render("client_v2/pages/user/transaction",{
+        pagetitle:"Thông tin giao dịch tài khoản",
+        orders: Orders
+    })
+}
+
+//[GET] /user/info/transaction/:id
+module.exports.transactionDetail = async (req,res) => {
+    const orderId = req.params.id;
+    const order = await Order.findOne({
+        _id: orderId
+    });
+
+    order.totalPrice = 0;
+
+    for (const item of order.products) {
+        const infoProduct = await Product.findOne({
+            _id: item.product_id
+        });
+
+        item.title = infoProduct.title;
+        item.thumbnail = infoProduct.thumbnail;
+        item.priceNew = (item.price * (100 - item.discountPercentage)/100).toFixed(0);
+        item.totalPrice = item.priceNew * item.quantity;
+        order.totalPrice += item.totalPrice;
+        await Product.updateOne({
+            _id: item.product_id
+        },{
+            stock: infoProduct.stock - item.quantity,
+        });
+    }
+
+
+    res.render("client_v2/pages/user/transaction-detail",{
+        pagetile: "Thông tin chi tiết giao dịch",
+        order: order
+    });
 }

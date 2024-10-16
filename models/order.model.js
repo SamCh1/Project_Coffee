@@ -21,6 +21,8 @@ const orderSchema = new mongoose.Schema(
             user_id: String,
             email: String
         },
+        discountPercentage: Number,
+        DecreasePrice: Number,
         totalPrice: Number
     },
     {

@@ -1855,6 +1855,39 @@ a {
 
 /* End blog */
 
+/*Transaction*/
+
+.trans__item{
+  color:#616161;
+  width: 100%;
+  padding: 20px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f3f3;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.trans__quantity{
+  font-size:24px;
+  font-weight:700;
+}
+
+.trans__total{
+  font-size:18px;
+}
+
+.turn-back{
+  color:black;
+}
+
+.turn-back:hover{
+  text-decoration: underline;
+}
+
+/*End transaction*/
+
+
 /*# sourceMappingURL=style.css.map */
 
 

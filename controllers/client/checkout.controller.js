@@ -1,8 +1,8 @@
 const Cart = require("../../models/cart.model")
 const Product = require("../../models/product.model")
 const Order = require("../../models/order.model")
-const user = require("../../models/user.model")
 const User = require("../../models/user.model")
+const ExchangeVoucher = require("../../models/exchange-voucher.model")
 
 //[GET] /checkout
 module.exports.index = async(req, res) => {
@@ -71,24 +71,46 @@ module.exports.order = async(req, res) => {
             orderInfo.products.push(objectProduct);
         }
         
+        if(infoUser.voucher){
+            const vouchers = await ExchangeVoucher.findOne({
+                'users.user_id': user.id,
+                code: infoUser.voucher,
+                status:"active",
+            })
+
+            if(!vouchers){
+                req.flash("error","Mã voucher không hợp lệ")
+                return res.redirect('back');
+            }
+            const decreasePrice = (totalPrice * (100-vouchers.vouchers[0].discountPercentage)/100).toFixed(0);
+            orderInfo.DecreasePrice = decreasePrice;
+            orderInfo.discountPercentage = vouchers.vouchers[0].discountPercentage;
+            await ExchangeVoucher.updateOne({
+                'users.user_id': user.id,
+                code: infoUser.voucher,
+                status:"active",
+            },{
+                status: "inactive"
+            })
+        }
+
         orderInfo.totalPrice = totalPrice;
-        
         if(user){
             orderInfo.users = {
                 user_id: user.id,
                 email:user.email
             };
-            if(totalPrice >= 100000 ){
+            if(totalPrice >= 100000 && (infoUser.voucher == ""  || !infoUser.voucher)){
                 const currentScore =  Math.floor(totalPrice / 100000);
                 const Score =  currentScore * 10;
+                const TotalScore = Score + user.score;
                 await User.updateOne({
                     _id: user.id
                 },{
-                    score: Score
+                    score: TotalScore
                 })
             }
         }
-    
         const order = new Order(orderInfo)
         await order.save();
     

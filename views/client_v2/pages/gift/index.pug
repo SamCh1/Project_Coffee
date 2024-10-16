@@ -2,9 +2,10 @@ extends ../../layouts/default.pug
 include ../../mixins/section3.pug
 include ../../mixins/section6.pug
 include ../../mixins/product-item.pug
-
-    title #{title}
+include ../../mixins/alert.mixins.pug
 block main
+    +alert-success(5000)
+    +alert-error(5000)
     style. 
         html {
             scroll-behavior: smooth;

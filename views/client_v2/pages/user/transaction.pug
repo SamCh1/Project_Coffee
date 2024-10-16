@@ -1,0 +1,38 @@
+extends ../../layouts/default.pug
+include ../../mixins/section4.pug
+block main
+        div(class="trans")
+            div(class="container")
+                div(class="trans__wrap")
+                    //breadscrum
+                    div(class="breadscrum")
+                        div(class="container")
+                            div(class="breadscrum__wrap")
+                                a(href="/" class="breadscrum__link") Trang chủ
+                                a(href="/user/info" class="breadscrum__link") Tài khoản
+                                a(href="/user/info/transaction" class="breadscrum__link") Giao dịch
+                    //End breadscrum
+                    if (orders && orders.length > 0)
+                        - var date = null; 
+                        each item in orders 
+                            div(class="box-head" style="margin-top: 20px;")
+                                div(class="box-head__left")
+                                    // Check if the date has changed
+                                    if (item.createdAt.toISOString().split('T')[0] != date) 
+                                        - date = item.createdAt.toISOString().split('T')[0]; 
+                                        div(class="box-head__sub-title") #{date} 
+                            div(class="trans__list" style="margin-bottom: 30px")
+                                a(href=`/user/info/transaction/${item._id}`) 
+                                    div(class="trans__item")
+                                        h3(class="trans__quantity") Tổng số sản phẩm: #{item.products.length} <i class="fa-brands fa-opencart"></i>
+                                        if (item.DecreasePrice != null) 
+                                            div(class="trans__total")
+                                                <i class="fa-solid fa-money-bill-wave"></i> : #{item.DecreasePrice} VND 
+                                        else
+                                            div(class="trans__total")
+                                                <i class="fa-solid fa-money-bill-wave"></i> : #{item.totalPrice} VND 
+                    else
+                        h1(style="margin: 120px 0; color: red; text-align: center;") Hiện tại không có giao dịch nào
+
+
+        

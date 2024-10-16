@@ -5,12 +5,6 @@ block main
     .row
       .col-12
 
-
-    .row
-      .col-12
-        div(class="alert alert-success")
-          | Chúc mừng bạn đã đặt hàng thành công! Chúng tôi sẽ xử lý đơn hàng trong thời gian sớm nhất.
-
     if(order)
       div(class="cart")
         div(class="container")
@@ -31,6 +25,10 @@ block main
                   td Địa chỉ
                   td
                     b #{order.userInfo.address}
+                tr 
+                  td Ngày Mua 
+                  td 
+                    b #{order.createdAt.toISOString().split('T')[0]}
 
     div(class="cart")
       div(class="container")
@@ -67,8 +65,11 @@ block main
                       if(order.DecreasePrice != null)
                         td #{order.discountPercentage}%
                         td #{order.DecreasePrice} VND
-          if(order.products.length > 0)
-            if(order.discountPercentage != NULL)  
-              h3(class="text-right") Tổng đơn hàng: #{order.DecreasePrice} VND
-            else 
-              h3(class="text-right") Tổng đơn hàng: #{order.totalPrice} VND
+        if(order.products.length > 0)
+                h3(class="text-right") Tổng đơn hàng: #{order.totalPrice} VND
+                if(order.discountPercentage != NULL)  
+                    h3(class="text-right" style="color:red;") Giảm giá: #{order.discountPercentage}%
+                    h2(class="text-right" style="color:#616161;") Tổng đơn hàng giảm còn: #{order.DecreasePrice} VND
+        else 
+            h3(class="") Không có đơn hàng nào
+        a(href="/user/info/transaction" class="turn-back") Quay lại

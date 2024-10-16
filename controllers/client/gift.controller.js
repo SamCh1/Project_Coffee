@@ -1,6 +1,10 @@
 const Voucher = require("../../models/voucher.models");
 const Gift = require("../../models/gift.models");
 const GiftCategory = require("../../models/gift-category.models")
+const ExchangeVoucher = require("../../models/exchange-voucher.model")
+const ExchangeGift = require("../../models/exchang-gift.model")
+const User = require("../../models/user.model")
+const generate = require("../../helpers/generate.helper")
 
 // [GET] /gift/
 module.exports.index = async (req, res) => {
@@ -18,12 +22,7 @@ module.exports.index = async (req, res) => {
             status: "active",
             deleted: false
         }).sort(sort);
-    
-        // for (const item of gifts){
-        //     item.priceNew = item.price * (1 - item.discountPercentage/100);
-        //     item.priceNew = item.priceNew.toFixed(0);
-        // }
-    
+
         const vouchers = await Voucher.find({
             status: "active",
             deleted: false
@@ -81,7 +80,7 @@ module.exports.detail = async (req, res) => {
 }
 
 
-//[GET] /products/:slugCategory
+//[GET] /gift/:slugCategory
 module.exports.category = async (req, res) => {
     const slugCategory = req.params.slugCategory;
     const category = await ProductCategory.findOne({
@@ -139,7 +138,145 @@ module.exports.category = async (req, res) => {
     });
 }
 
-//[PATCH] /gifts/exchange/voucher/:id
+//[POST] /gifts/exchange/voucher/:id
 module.exports.exchangeVoucher = async (req, res) => {
-    res.send("ok");
-}
+    try {
+        const user = res.locals.user;
+        const voucherId = req.params.id;
+
+        if (!user) {
+            req.flash("error", "Có lỗi trong quá trình lấy thông tin tài khoản");
+            return res.redirect('back');
+        }
+
+        const voucher = await Voucher.findOne({
+            _id: voucherId,
+            deleted: false,
+            status: "active"
+        });
+
+        if (!voucher) {
+            req.flash("error", "Hiện tại không lấy được voucher");
+            return res.redirect('back');
+        }
+
+
+        if (user.score < voucher.score) {
+            req.flash("error", "Số điểm của bạn không đủ");
+            return res.redirect('back');
+        }
+
+
+        const code = generate.generateRandomCode(10);
+        const scoreTotal = user.score;
+        const scoreCurrent = user.score - voucher.score;
+
+        const exchangeData = {
+            code: code,
+            status: "active",
+            scoreUsed: voucher.score,
+            scoreTotal:scoreTotal,
+            scoreCurrent: scoreCurrent,
+            vouchers: {
+                voucher_id: voucher.id,
+                thumbnail: voucher.thumbnail,
+                score: voucher.score,
+                discountPercentage: voucher.discountPercentage,
+            },
+            users: {
+                user_id: user.id,
+                email: user.email,
+                score: user.score,
+            }
+        };
+
+        const newExchangeVoucher = new ExchangeVoucher(exchangeData);
+        await newExchangeVoucher.save();
+
+        // Update user's score
+        await User.updateOne(
+            { _id: user.id },
+            { score: scoreCurrent }
+        );
+
+        // Redirect back with success message
+        req.flash("Success", "Đổi mã giảm giá thành công");
+        return res.redirect('back');
+
+    } catch (error) {
+        console.error(error);
+        req.flash("error", "Có lỗi xảy ra trong quá trình đổi voucher");
+        return res.redirect('back');
+    }
+};
+
+
+//[POST] /gifts/exchange/gift/:id
+module.exports.exchangeGift = async (req, res) => {
+    try {
+        const user = res.locals.user;
+        const GiftId = req.params.id;
+
+        if (!user) {
+            req.flash("error", "Có lỗi trong quá trình lấy thông tin tài khoản");
+            return res.redirect('back');
+        }
+
+        const gift = await Gift.findOne({
+            _id: GiftId,
+            deleted: false,
+            status: "active"
+        });
+
+        if (!gift) {
+            req.flash("error", "Hiện tại không thể lấy được phần thưởng này");
+            return res.redirect('back');
+        }
+
+
+        if (user.score < gift.score) {
+            req.flash("error", "Số điểm của bạn không đủ");
+            return res.redirect('back');
+        }
+
+        const scoreTotal = user.score;
+        const scoreCurrent = user.score - gift.score;
+
+        const exchangeData = {
+            status: "active",
+            scoreUsed: gift.score,
+            scoreTotal:scoreTotal,
+            scoreCurrent: scoreCurrent,
+            gifts: {
+                gift_id: gift.id,
+                score: gift.score,
+                title: gift.title,
+                thumbnail: gift.thumbnail,
+                description: gift.description,
+            },
+            users: {
+                user_id: user.id,
+                email: user.email,
+                score: user.score,
+            }
+        };
+
+        const newExchangeGift = new ExchangeGift(exchangeData);
+        await newExchangeGift.save();
+
+        // Update user's score
+        await User.updateOne(
+            { _id: user.id },
+            { score: scoreCurrent }
+        );
+
+        // Redirect back with success message
+        req.flash("Success", "Đổi Phần thưởng thành công");
+        return res.redirect('back');
+
+    } catch (error) {
+        console.error(error);
+        req.flash("error", "Có lỗi xảy ra trong quá trình đổi phần thưởng");
+        return res.redirect('back');
+    }
+};

@@ -18,4 +18,6 @@ router.post("/password/otp", controller.otpPasswordPost)
 router.get("/password/reset", controller.resetPassword)
 router.post("/password/reset", validate.resetPassowrdPost, controller.resetPasswordPost)
 router.get("/info", authMiddleware.requireAuth, controller.info)
+router.get("/info/transaction", authMiddleware.requireAuth, controller.transaction)
+router.get("/info/transaction/:id", authMiddleware.requireAuth, controller.transactionDetail)
 module.exports = router;
