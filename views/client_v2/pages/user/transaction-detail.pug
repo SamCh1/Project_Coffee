@@ -44,9 +44,6 @@ block main
                   th Giá
                   th Số lượng
                   th Tổng tiền
-                  if(order.DecreasePrice != null) 
-                    th Giảm giá
-                    th Tiền còn lại
               tbody
                 if(order.products.length > 0)
                   each item, index in order.products
@@ -62,9 +59,6 @@ block main
                       td #{item.price} VND
                       td #{item.quantity}
                       td #{item.totalPrice} VND
-                      if(order.DecreasePrice != null)
-                        td #{order.discountPercentage}%
-                        td #{order.DecreasePrice} VND
         if(order.products.length > 0)
                 h3(class="text-right") Tổng đơn hàng: #{order.totalPrice} VND
                 if(order.discountPercentage != NULL)  

@@ -280,3 +280,29 @@ module.exports.exchangeGift = async (req, res) => {
         return res.redirect('back');
     }
 };
+
+//[GET] /gifts/reward
+module.exports.reward = async (req, res) => {
+    try {
+        const user = res.locals.user;
+        if(!user){
+            return res.redirect("back");
+        }   
+        const rewardGift = await ExchangeGift.find({
+            'users.user_id': user.id
+        })
+        const rewardVoucher = await ExchangeVoucher.find({
+            'users.user_id': user.id
+        })
+        res.render("client_v2/pages/gift/reward",{
+            pageTitle:"Trang đã đổi thưởng",
+            voucher: rewardVoucher,
+            gifts:rewardGift
+        });
+    } catch (error) {
+        console.log(error);
+        req.flash("error","Đã xảy ra vấn đề, vui lòng thử lại sau!")
+        res.redirect("back");
+    }
+   
+}

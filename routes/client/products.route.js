@@ -9,6 +9,8 @@ router.get("/detail/:slug", controller.detail);
 
 router.get("/:slugCategory", controller.category);
 
+router.post("/detail/rating/:slug", controller.comment);
+
 // router.get("/edit", controller.edit);
 
 // router.get("/create", controller.create);

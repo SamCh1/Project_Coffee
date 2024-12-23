@@ -1,6 +1,7 @@
 extends ../../layouts/default.pug
 include ../../mixins/product-item.pug
 include ../../mixins/alert.mixins.pug
+include ../../mixins/pagination.mixins.pug
     title #{title}
 
 block main
@@ -158,6 +159,62 @@ block main
     //End product info
 
     //Our customer
+
+    div(class="comment")
+        div(class="container")
+            div(class="comment__wrap")
+                form(
+                    action=`/products/detail/rating/${product.slug}`
+                    id="ratingForm"
+                    class="rating-form"
+                    method="POST"
+                )
+                    <div class="mb-3">
+                        <label class="form-label">Đánh giá sản phẩm!</label>
+                        <div class="star-rating" id="starRating">
+                            <i class="fa fa-star checked" data-value="1"></i>
+                            <i class="fa fa-star" data-value="2"></i>
+                            <i class="fa fa-star" data-value="3"></i>
+                            <i class="fa fa-star" data-value="4"></i>
+                            <i class="fa fa-star" data-value="5"></i>
+                        </div>
+                        <input type="hidden" id="rating" name="rating" value="1" required>
+                    </div>
+                    <div class="comment__input">
+                        <label for="comment" class="form-label">Bình luận</label>
+                        textarea(
+                            id="comment"
+                            name="comment"
+                            class="form-control" 
+                            rows="3"
+                            maxlength="200"
+                            oninput="updateCharacterCount()"
+                        )
+                        div(id="charCount" class="form-text") 0/200 ký tự
+                    </div>
+                    <button type="submit" class="btn btn-comment">Submit</button>
+                div(class="comment__feedback")
+                    label(class="form-feedback") Các bài đánh giá của khách hàng
+                    div(class="feedback__list")
+                        each item of comment
+                            div(class="feedback__item")
+                                div(class="feedback__top")
+                                    div(class="feedback__top-left")
+                                        div(class="avatar")
+                                            img(src="https://img.freepik.com/premium-vector/illustrations_995281-35700.jpg?w=826")
+                                        div(class="InfoUser")
+                                            div(class="name") #{item.users.fullName}
+                                            div(class="date") #{new Date(item.createdAt).toLocaleDateString()}
+                                    div(class="feedback__top-right")        
+                                        div(class="rated")
+                                            each star in [1, 2, 3, 4, 5]
+                                                if star <= item.rating
+                                                    i(class="fa fa-star checked" data-value = star) 
+                                                else
+                                                    i(class="fa fa-star" data-value = star)
+                                div(class="feedback_middle")
+                                    p(class="content") #{item.comment}
+                +pagination(pagination)
     //End our customer
 
     //section 2

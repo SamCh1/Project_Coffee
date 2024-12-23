@@ -1,0 +1,15 @@
+mixin pagination(pagination)
+    //pagination 
+    div(class="pagination")
+        ul(class="pagination__list")
+            if(pagination.currentPage > 1)
+                li(class="pagination__item")
+                    button(class="pagination__link" button-pagination = 1) 
+                            i(class="fa-regular fa-circle-left" style="color: #FFD43B;")
+            - for(var i = 1; i <= pagination.totalPage;i++)    
+                li(class=`pagination__item`)
+                    button(class=`pagination__link ${pagination.currentPage == i ? "pagination__link--active" : " "}` button-pagination = i) #{i}
+            if(pagination.currentPage < pagination.totalPage)        
+                li(class="pagination__item")
+                    button(class="pagination__link" button-pagination = pagination.currentPage + 1) <i class="fa-regular fa-circle-right" style="color: #FFD43B;"></i>
+    // End pagination

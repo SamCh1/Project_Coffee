@@ -1,0 +1,97 @@
+extends ../../layouts/default.pug
+include ../../mixins/section3.pug
+include ../../mixins/section6.pug
+include ../../mixins/product-item.pug
+include ../../mixins/alert.mixins.pug
+block main
+    +alert-success(5000)
+    +alert-error(5000)
+    style. 
+        html {
+            scroll-behavior: smooth;
+        }
+    
+    //breadscrum
+    div(class="breadscrum")
+        div(class="container")
+            div(class="breadscrum__wrap")
+                a(href="/" class="breadscrum__link") Trang chủ
+                a(href="/products" class="breadscrum__link") Đổi thưởng
+                a(href="#" class="breadscrum__link") Quà
+    //End breadscrum
+
+    //section 3
+    +section-3()
+    //End section 3
+
+    //Vouchers
+    div(class="cart")
+      div(class="container")
+        if(voucher.length > 0)
+            div(class="cart__title" style="color:#616161;")
+                h4(class="login__form-text" style="text-align:left; font-size:24px; font-weight:700;") Vouchers
+            div(class="cart__table")
+                table(class="table table-bordered" table-cart)
+                    thead
+                        tr
+                        th STT
+                        th Ảnh
+                        th Tên
+                        th Mã
+                        th Điểm đổi
+                        th Trạng thái
+                    tbody
+                        each item, index in voucher
+                            tr
+                            td #{index + 1}
+                            td
+                                img(
+                                src=item.vouchers[0].thumbnail
+                                alt=item.title
+                                width="80px"
+                                )
+                            td Mã giảm giá #{item.vouchers[0].discountPercentage}%
+                            td #{item.code} 
+                            td #{item.scoreUsed}
+                            if(item.status == "active")
+                                td Chưa dùng
+                            else
+                                td Đã dùng
+        else 
+            h3(class="") Chưa có mã đổi nào
+    
+    //Gifts
+    div(class="cart")
+      div(class="container")
+        if(voucher.length > 0)
+            div(class="cart__title" style="color:#616161;")
+                h4(class="login__form-text" style="text-align:left; font-size:24px; font-weight:700;") Vouchers
+            div(class="cart__table")
+                table(class="table table-bordered" table-cart)
+                    thead
+                        tr
+                        th STT
+                        th Ảnh
+                        th Tên
+                        th Điểm đổi
+                        th Trạng thái
+                    tbody
+                        each item, index in gifts
+                            tr
+                            td #{index + 1}
+                            td
+                                img(
+                                src=item.gifts[0].thumbnail
+                                alt=item.gifts[0].title
+                                width="80px"
+                                )
+                            td #{item.gifts[0].title}
+                            td #{item.scoreUsed}
+                            if(item.status == "active")
+                                td Đang xử lý
+                            else
+                                td Chưa xử Lý
+        else 
+            h3(class="") Chưa có sản phẩm đổi nào
+        a(href="/user/info" class="turn-back") Quay lại      
+        

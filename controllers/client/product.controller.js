@@ -1,10 +1,11 @@
 const Product = require("../../models/product.model");
 const ProductCategory = require("../../models/product-category.model") 
+const Comment = require("../../models/comment.model")
+const paginationHelper = require("../../helpers/pagination.helper")
 
 // [GET] /product/
 module.exports.index = async (req, res) => {
     try {
-
         //sort
         const sort={};
         if(req.query.sortKey && req.query.sortValue){
@@ -32,8 +33,6 @@ module.exports.index = async (req, res) => {
             status: "active",
             deleted: false
         }).sort({ position: "asc"});
-
-        console.log(categories);
 
         res.render("client_v2/pages/product/index",{
             pageTitle: "Trang danh sách sản phẩm",
@@ -69,10 +68,21 @@ module.exports.detail = async (req, res) => {
             product.category = category;
         }
 
+        const countComments = await Comment.countDocuments({
+            'product.product_id': product.id,  
+            deleted: false,
+        });
+        const objectPagination = paginationHelper(3, req.query, countComments);
+        const comment = await Comment.find({
+            'product.product_id': product.id,  
+            deleted: false,
+        }).limit(objectPagination.limitItem).skip(objectPagination.skip).sort({ createdAt: -1 });
 
         res.render("client_v2/pages/product/detail",{
             pageTitle: product.title,
-            product: product
+            product: product,
+            comment: comment,
+            pagination: objectPagination
         });
     } catch (error) {
         res.redirect("/");
@@ -138,4 +148,48 @@ module.exports.category = async (req, res) => {
         category: cat,
         allCategory: allCategories
     });
+}
+
+//[POST] /detail/rating/:slug
+module.exports.comment = async (req,res) => {
+    try{
+        const data = req.body;
+        const rating = parseInt(data.rating);
+        const content = data.comment;
+        const slugProduct =  req.params.slug;
+        const user = res.locals.user;
+        if(!user){
+            req.flash("error", "bạn cần đăng nhập để có thể bình luận!");
+            return res.redirect('back');
+        }
+    
+        const ProductId = await Product.findOne({
+            slug: slugProduct,
+            deleted: false,
+            status: "active"
+        })
+        const comment = {
+            users:{
+                user_id: user.id,
+                fullName: user.fullName
+            },
+            product:{
+                product_id: ProductId.id
+            },
+            rating: rating,
+            comment: content,
+            createdBy:{
+                accountID:user.id
+            }
+        }
+        const feedback = new Comment(comment); //tạo mới 1 sản phẩm
+        await feedback.save();
+        req.flash("Success","Cám ơn bạn đã đánh giá cho sản phẩm chúng tôi!")
+        res.redirect("back");
+    }catch(error){
+        console.log(error);
+        req.flash("error","Đã xảy ra vấn đề, vui lòng thử lại sau!")
+        res.redirect("back");
+    }
+    
 }
